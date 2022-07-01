@@ -1,0 +1,45 @@
+
+
+.hide {
+ display: none;
+}
+
+.valid {
+ color: green;
+}
+
+.invalid {
+ color: fuchsia;
+}
+
+.valid, .invalid {
+ margin-left: .25rem;
+}
+
+.offscreen {
+ position: absolute;
+ left: -9000px;
+}
+
+.error-message {
+ background: rgb(249, 152, 215);
+ color: rgb(40,40,40);
+ font-weight: bold;
+ padding: .5rem;
+ margin-bottom: .5rem;
+}
+
+input {
+ color: rgb(40,40,40);
+}
+
+.instructions{
+ color: lightblue;
+ background: rgb(40,40,40)
+}
+
+.icon {
+ margin-right: .25rem;
+ border: solid 2px lightblue;
+ border-radius: 50%;
+}

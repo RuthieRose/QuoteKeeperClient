@@ -1,24 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId} from './Components/Context'
+import QuoteOfTheDay from './Components/Quotes/QuoteOfTheDay'
+import Login from './Components/login/Login'
+import Register from './Components/login/Register'
+import SavedQuotes from './Components/Quotes/SavedQuotes'
+import AddQuote from './Components/Quotes/AddQuote'
+import Nav from './Components/elements/Nav'
+import Footer from './Components/elements/Footer'
+import { Navigate, Outlet, Routes, Route, useLocation } from 'react-router-dom'
 
 function App() {
+
+  const loggedIn = useContextLoggedIn()
+  const updateLoggedIn = useContextUpdateLoggedIn()
+  const updateLoggedOut = useContextUpdateLoggedOut()
+  const userId = useContextUserId()
+  const updateUserId = useContextUpdateUserId()
+  const accessToken = useContextAccessToken()
+  const updateAccessToken = useContextUpdateAccessToken()
+
+  function PrintLoggedIn() {
+    console.log(loggedIn, accessToken, userId)
+  }
+
+  function RequireAuth() {
+    const location = useLocation();
+
+    return loggedIn ? <Outlet /> : <Navigate to='/login' replace state={{ from: location }} />
+  }
+
   return (
+
+
     <div className="App">
+      <Nav />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>
+          Quote Keeper
+        </h1>
       </header>
+      <div><button onClick={PrintLoggedIn}>Print Logged In Status</button></div>
+
+      <Routes>
+
+        <Route path="/" element={<QuoteOfTheDay />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+
+
+        {/* <Route path="resetpassword/request" element={<Request />} />
+        <Route path="resetpassword/reset" element={<Reset />} /> */}
+
+        <Route path='/' element={<RequireAuth />}>
+          <Route path="saved" element={<SavedQuotes />} />
+          <Route path="add" element={<AddQuote />} />
+        </Route>
+      </Routes>
+
+      <Footer />
     </div>
+
   );
 }
 

@@ -5,8 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(39, 38, 40);
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+  color: white
+}
+
+header {
+  margin-top: 2rem;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
