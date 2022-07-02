@@ -1,0 +1,132 @@
+import './reset.css'
+import axiosAPI from 'axios';
+import { Link } from 'react-router-dom'
+import { useRef, useState, useEffect } from 'react';
+import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const axios = axiosAPI.create({
+  baseURL: 'https://quotekeeper.herokuapp.com'
+})
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const REQUEST = '/passwordreset/request';
+
+export default function Request() {
+
+  const userInputRef = useRef();
+  const errorRef = useRef();
+
+  const [email, setEmail] = useState('');
+  const [validEmail, setValidEmail] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success, setSuccess] = useState(false);
+
+
+  useEffect(() => {
+    userInputRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    const result = EMAIL_REGEX.test(email);
+    setValidEmail(result)
+  }, [email]);
+
+  useEffect(() => {
+    setErrorMessage('');
+  }, [email]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // additional validation 
+
+    const test3 = EMAIL_REGEX.test(email);
+    if (!test3) {
+      setErrorMessage('Invalid entry');
+      return;
+    }
+    try {
+      const response = await axios.post(REQUEST,
+        JSON.stringify({ email }),
+        {
+          headers: { 'Content-Type': 'application/json' }
+        })
+      setEmail('')
+      setSuccess(true)
+    }
+
+    catch (err) {
+      if (err.response.status === 409) {
+        setErrorMessage(err.response.data)
+        console.log(err)
+        setSuccess(false)
+        errorRef.current.focus()
+      } else {
+        setErrorMessage('request failed')
+        console.log(err)
+      }
+
+    }
+  }
+  return (
+    <>
+      <section>
+        <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
+        <h1>Request Password Reset</h1>
+        <form onSubmit={handleSubmit}>
+
+          {/* Email */}
+
+          <label htmlFor="email">
+            Email:
+
+            <span className={validEmail && emailFocus ? 'valid' : 'hide'}>
+              <FontAwesomeIcon icon={faCheck} />
+            </span>
+
+            <span className={validEmail || !email ? 'hide' : 'invalid'}>
+              <FontAwesomeIcon icon={faTimes} />
+            </span>
+
+          </label>
+          <input
+            type="text"
+            id="email"
+            ref={userInputRef}
+            autoComplete="off"
+            onChange={e => setEmail(e.target.value)}
+            required
+            aria-invalid={validEmail ? 'false' : 'true'}
+            aria-describedby='emailnote'
+            onFocus={() => setEmailFocus(true)}
+            onBlur={() => setEmailFocus(false)}
+          />
+
+          <p id="emailnote" className={email && !validEmail ? 'instructions' : 'offscreen'}>
+            <FontAwesomeIcon icon={faInfoCircle} className='icon' />
+            Must be a valid email address. <br />
+          </p>
+
+         
+
+
+
+          <button disabled={!validEmail ? true : false}>Request</button>
+
+          <p>
+
+            <span className="line">
+
+            </span>
+          </p>
+
+        </form>
+      </section>
+
+    </>
+  )
+}

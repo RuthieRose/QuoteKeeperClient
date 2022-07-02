@@ -5,6 +5,8 @@ import Login from './Components/login/Login'
 import Register from './Components/login/Register'
 import SavedQuotes from './Components/Quotes/SavedQuotes'
 import AddQuote from './Components/Quotes/AddQuote'
+import Reset from './Components/reset/Reset'
+import Request from './Components/reset/Request'
 import Nav from './Components/elements/Nav'
 import Footer from './Components/elements/Footer'
 import { Navigate, Outlet, Routes, Route, useLocation } from 'react-router-dom'
@@ -39,17 +41,16 @@ function App() {
           Quote Keeper
         </h1>
       </header>
-      <div><button onClick={PrintLoggedIn}>Print Logged In Status</button></div>
+    
 
       <Routes>
 
         <Route path="/" element={<QuoteOfTheDay />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="reset" element={<Reset />} />
+        <Route path="passwordreset/request" element={<Request />} />
 
-
-        {/* <Route path="resetpassword/request" element={<Request />} />
-        <Route path="resetpassword/reset" element={<Reset />} /> */}
 
         <Route path='/' element={<RequireAuth />}>
           <Route path="saved" element={<SavedQuotes />} />

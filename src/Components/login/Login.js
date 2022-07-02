@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useContextLoggedIn } from '../Context';
 import './login.css'
 import axiosAPI from 'axios';
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -48,7 +48,7 @@ export default function Login() {
       const { from } = location.state || { from: { pathname:'/'}}
       navigate(from, { replace: true})
     }
-  }, [loggedIn])
+  }, [loggedIn, location, navigate])
 
 
   useEffect(() => {
