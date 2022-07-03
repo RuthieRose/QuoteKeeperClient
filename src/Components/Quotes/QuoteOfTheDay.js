@@ -21,7 +21,6 @@ export default function QuoteOfTheDay() {
   const count = useContextCount()
   const updateCount = useContextUpdateCount()
 
-
   let [quotebank, setQuotebank] = useState('')
 
 
@@ -35,16 +34,18 @@ export default function QuoteOfTheDay() {
       let quotebank = await fetch('https://quotekeeper.herokuapp.com/quotebank')
       quotebank = await quotebank.json()
       setQuotebank(quotebank);
-      let set = quotebank[count]
-      updateQuote(set[0])
-      updateAuthor(set[1])
-      updateCount()
-
+      updateQuote(quotebank[count][0])
+      updateAuthor(quotebank[count][1])
     }
     getQuotes();
-
   }, []);
+
+
+  useEffect(() => {
+    updateCount(count => count + 1)
+  }, [quote])
   
+
   const saveQuote = async () => {
 
     try {
@@ -63,12 +64,10 @@ export default function QuoteOfTheDay() {
   
 
   const getNewQuote = () => {
-  
-
     let next = quotebank[count]
     updateQuote(next[0])
     updateAuthor(next[1])
-    updateCount()
+
   }
 
   const copy = async () => {

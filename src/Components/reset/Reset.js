@@ -70,7 +70,7 @@ export default function Reset() {
       JSON.stringify({resetString: temp, password}), 
       {
        headers: { 'Content-Type': 'application/json'}})
-     navigate('/login')
+     navigate('/')
   }
 
   catch(err) {
@@ -196,7 +196,7 @@ export default function Reset() {
       <p>
     
        <span className="line">
-        <Link to="/login">Need to login?</Link>
+        <Link to="/">Need to login?</Link>
 
        </span>
       </p>

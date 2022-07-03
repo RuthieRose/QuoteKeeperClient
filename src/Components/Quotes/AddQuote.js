@@ -11,7 +11,7 @@ const INPUT_REGEX = /^[a-zA-Z][a-zA-Z-_'.! ]/
 
 const ADD = '/quotes';
 
-export default function AddQuote() {
+export default function AddQuote({setDisplay}) {
 
  const userInputRef = useRef();
  const errorRef = useRef();
@@ -35,6 +35,10 @@ export default function AddQuote() {
  const [errorMessage, setErrorMessage] = useState('');
 
  useEffect(() => {
+  setDisplay(false)
+ },[])
+
+ useEffect(() => {
   userInputRef.current.focus();
  }, []);
 
@@ -52,8 +56,13 @@ export default function AddQuote() {
   setErrorMessage('');
  }, [quote, author]);
 
+ const handleHome = () => {
+  setDisplay(true)
+}
+
  const handleSubmit = async (e) => {
   e.preventDefault();
+ 
 
   // additional validation 
   const test1 = INPUT_REGEX.test(quote);
@@ -157,10 +166,10 @@ export default function AddQuote() {
      
       <button disabled={!validAuthor || !validQuote ? true : false}>Save</button>
 
-
-
      </form>
     </section>
+
+    <div onClick={handleHome}><Link to='/'>Back to Quotes</Link></div>
   </>
  )
 }

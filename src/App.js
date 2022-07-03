@@ -1,8 +1,8 @@
 
+import {useEffect, useState} from 'react'
 import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId} from './Components/Context'
 import QuoteOfTheDay from './Components/Quotes/QuoteOfTheDay'
-import Login from './Components/login/Login'
-import Register from './Components/login/Register'
+import Parent from './Components/login/Parent'
 import SavedQuotes from './Components/Quotes/SavedQuotes'
 import AddQuote from './Components/Quotes/AddQuote'
 import Reset from './Components/reset/Reset'
@@ -21,15 +21,14 @@ function App() {
   const accessToken = useContextAccessToken()
   const updateAccessToken = useContextUpdateAccessToken()
 
-  function PrintLoggedIn() {
-    console.log(loggedIn, accessToken, userId)
-  }
-
   function RequireAuth() {
     const location = useLocation();
 
-    return loggedIn ? <Outlet /> : <Navigate to='/login' replace state={{ from: location }} />
+    return loggedIn ? <Outlet /> : null
   }
+
+  let [display, setDisplay] = useState(true)
+
 
   return (
 
@@ -41,20 +40,24 @@ function App() {
           Quote Keeper
         </h1>
       </header>
-    
+     
+     <main>
+     {display ? <QuoteOfTheDay /> : null }
+     </main>
+     
+     <section>
+     {loggedIn ? null : <Parent />}
+     </section>
 
       <Routes>
 
-        <Route path="/" element={<QuoteOfTheDay />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
         <Route path="passwordreset/reset" element={<Reset />} />
         <Route path="passwordreset/request" element={<Request />} />
 
 
         <Route path='/' element={<RequireAuth />}>
-          <Route path="saved" element={<SavedQuotes />} />
-          <Route path="add" element={<AddQuote />} />
+          <Route path="saved" element={<SavedQuotes setDisplay={setDisplay} />} />
+          <Route path="add" element={<AddQuote setDisplay={setDisplay} />} />
         </Route>
       </Routes>
 

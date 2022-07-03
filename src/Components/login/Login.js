@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+
 import { useContextLoggedIn } from '../Context';
 import './login.css'
 import axiosAPI from 'axios';
@@ -16,7 +16,9 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const LOGIN = '/users/login';
 
-export default function Login() {
+
+
+export default function Login({setToggle}) {
 
   const loggedIn = useContextLoggedIn()
 
@@ -38,17 +40,11 @@ export default function Login() {
   const updateAccessToken = useContextUpdateAccessToken()
 
   const updateGreeting = useContextUpdateName()
-  
-  const location = useLocation()
-  const navigate = useNavigate()
-  
-  useEffect(() => {
-    if (loggedIn) {
-      const { from } = location.state || { from: { pathname:'/'}}
-      navigate(from, { replace: true})
-    }
-  }, [loggedIn, location, navigate])
 
+  const handleRegister = () => {
+    setToggle('register')
+  }
+  
 
   useEffect(() => {
     userInputRef.current.focus();
@@ -182,14 +178,14 @@ export default function Login() {
 
           <button disabled={!validEmail || !validPassword ? true : false}>Login</button>
 
-          <p>
+          <div>
 
             <span className="line">
-              <Link to="/register">Need to register?</Link>
+              <div onClick={handleRegister}>Need to register?</div>
               <Link to="/passwordreset/request">Forgot password?</Link>
 
             </span>
-          </p>
+          </div>
 
         </form>
       </section>

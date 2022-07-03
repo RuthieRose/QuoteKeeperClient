@@ -14,7 +14,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER = '/users/register';
 
-export default function Register() {
+export default function Register({setToggle}) {
 
  const userInputRef = useRef();
  const errorRef = useRef();
@@ -65,6 +65,10 @@ export default function Register() {
   setErrorMessage('');
  }, [name, email, password, matchPassword]);
 
+ const handleLogin = () => {
+   setToggle('login')
+ }
+
  const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -83,7 +87,7 @@ export default function Register() {
        headers: { 'Content-Type': 'application/json'}})
      console.log(response);
      setSuccess(true)
-     navigate('/login')
+     setToggle('login')
      // clear input fields
   }
 
@@ -101,15 +105,7 @@ export default function Register() {
  }
  return (
   <>
-   {success ? (
 
-    <section>
-     <h1>Success!</h1>
-     <p>
-      <Link to="/login">Sign In</Link>
-     </p>
-    </section>
-   ) : (
     <section>
      <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
      <h1>Register</h1>
@@ -252,18 +248,17 @@ export default function Register() {
 
       <button disabled={!validName || !validEmail || !validPassword || !validMatch ? true : false}>Register</button>
 
-      <p>
+
     
        <span className="line">
-        <Link to="/login">Need to login?</Link>
+        <div onClick={handleLogin}>Need to login?</div>
 
        </span>
-      </p>
+
 
      </form>
     </section>
-   )
-   }
+
   </>
  )
 }

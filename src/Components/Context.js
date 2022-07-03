@@ -118,10 +118,8 @@ export function ContextProvider({ children }) {
       setCurrAuthor(author)
    }
 
-   function updateCount() {
-      setCount(prev => {
-       return  prev === 45 ? 0 : count + 1
-      })
+   function updateCount(num) {
+      setCount(num)
    }
 
    return (
