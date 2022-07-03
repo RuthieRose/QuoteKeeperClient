@@ -1,6 +1,6 @@
 import './register.css';
 import axiosAPI from 'axios';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,6 +18,7 @@ export default function Register() {
 
  const userInputRef = useRef();
  const errorRef = useRef();
+ const navigate = useNavigate()
 
  const [name, setName] = useState('');
  const [validName, setValidName] = useState(false);
@@ -82,6 +83,7 @@ export default function Register() {
        headers: { 'Content-Type': 'application/json'}})
      console.log(response);
      setSuccess(true)
+     navigate('/login')
      // clear input fields
   }
 

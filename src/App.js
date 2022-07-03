@@ -48,7 +48,7 @@ function App() {
         <Route path="/" element={<QuoteOfTheDay />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="reset" element={<Reset />} />
+        <Route path="passwordreset/reset" element={<Reset />} />
         <Route path="passwordreset/request" element={<Request />} />
 
 

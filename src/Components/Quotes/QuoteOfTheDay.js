@@ -1,68 +1,100 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer} from 'react';
+import axiosAPI from 'axios';
+import { Link, useNavigate } from 'react-router-dom'
 import './quote.css';
-import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId, useContextCounter, useContextUpdateCounter  } from '../Context'
+import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId, useContextCurrQuote, useContextUpdateCurrQuote, useContextCurrAuthor, useContextUpdateCurrAuthor, useContextCount, useContextUpdateCount} from '../Context'
 
 export default function QuoteOfTheDay() {
 
- let [quote, setQuote] = useState();
- let [author, setAuthor] = useState();
- let [getNew, setGetNew] = useState(0);
- let [savedQuote, setSavedQuote] = useState();
- let [quoteBank, setQuoteBank] = useState();
- 
+  const ADD = '/quotes'
 
- const loggedIn = useContextLoggedIn()
- const updateLoggedOut = useContextUpdateLoggedOut()
- const userId = useContextUserId()
- const accessToken = useContextAccessToken()
- let counter = useContextCounter()
- let updateCounter = useContextUpdateCounter()
- 
- useEffect(() => {
-  async function getQuote() {
-   let quotebank = await fetch('https://quotekeeper.herokuapp.com/quotebank')
-   quotebank = await quotebank.json()
-   setQuoteBank(quotebank);
-   setQuote(quotebank[counter][0])
-   setAuthor(quotebank[counter][1])
-   updateCounter(counter => {
-     if (counter === 49) return 0;
-     else return counter+=1
-   })
+  const loggedIn = useContextLoggedIn()
+  const updateLoggedOut = useContextUpdateLoggedOut()
+  const accessToken = useContextAccessToken()
+  const navigate = useNavigate();
+  const token = useContextAccessToken()
+  const userId = useContextUserId()
+  const quote = useContextCurrQuote()
+  const updateQuote = useContextUpdateCurrQuote()
+  const author = useContextCurrAuthor()
+  const updateAuthor = useContextUpdateCurrAuthor()
+  const count = useContextCount()
+  const updateCount = useContextUpdateCount()
+
+
+  let [quotebank, setQuotebank] = useState('')
+
+
+  const axios = axiosAPI.create({
+    baseURL: 'https://quotekeeper.herokuapp.com',
+    headers: { 'content-type': 'application/json', 'Authorization': `Bearer ${token}` }
+  })
+
+  useEffect(() => {
+    async function getQuotes() {
+      let quotebank = await fetch('https://quotekeeper.herokuapp.com/quotebank')
+      quotebank = await quotebank.json()
+      setQuotebank(quotebank);
+      let set = quotebank[count]
+      updateQuote(set[0])
+      updateAuthor(set[1])
+      updateCount()
+
+    }
+    getQuotes();
+
+  }, []);
+  
+  const saveQuote = async () => {
+
+    try {
+     
+      const response = await axios.post(`${ADD}/${userId}`,
+        JSON.stringify({ quote, author }))
+      navigate('/saved')
+    }
+
+    catch (err) {
+      if (err) {
+        console.log(err)
+      }
+    }
   }
-  getQuote();
- }, []);
+  
 
- useEffect(() => {
-  async function getNewQuote() {
-    let quotebank = await fetch('https://quotekeeper.herokuapp.com/quotebank')
-    quotebank = await quotebank.json()
-    setQuoteBank(quotebank);
-    setQuote(quotebank[counter][0])
-    setAuthor(quotebank[counter][1])
-    updateCounter(counter => {
-      if (counter === 49) return 0;
-      else return counter+=1
-    })
-   }
-   getNewQuote();
- }, [getNew])
+  const getNewQuote = () => {
+  
 
- const saveQuote = () => {
-   setSavedQuote({quote, author})
- }
+    let next = quotebank[count]
+    updateQuote(next[0])
+    updateAuthor(next[1])
+    updateCount()
+  }
 
- const refresh = () => {
-   setGetNew(prevState => prevState+=1)
- }
+  const copy = async () => {
+    if (!navigator.clipboard) {
+      return
+    }
+    try {
+      await navigator.clipboard.writeText(quote + ' ~ ' + author)
+    }
+    catch (err) {
+      console.log(err)
+    }
+ 
+  }
 
+  const tweet = () => {
+    window.open(`http://twitter.com/intent/tweet?text=${quote} ~ ${author}%0A https://quotekeeper.io`, '_blank')
+  }
 
-
- return (
-  <div className="quote">
-   <div>{quote} ~ {author}</div>
-   {loggedIn && <button onClick={saveQuote}>Save this quote</button>}
-   <button onClick={refresh}>Get a new quote</button>
-   </div>
- )
+  return (
+    <div className="quote">
+      <div>{quote} ~ {author}</div>
+      {loggedIn && <button onClick={saveQuote}>Save this quote</button>}
+      <button onClick={copy}>Copy To Clipboard</button>
+      <button onClick={tweet}>Tweet</button>
+      <button onClick={getNewQuote}>Get a new quote</button>
+    </div>
+  )
 }

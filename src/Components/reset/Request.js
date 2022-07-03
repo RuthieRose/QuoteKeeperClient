@@ -1,6 +1,6 @@
 import './reset.css'
 import axiosAPI from 'axios';
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,20 +10,19 @@ const axios = axiosAPI.create({
 })
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REQUEST = '/passwordreset/request';
 
 export default function Request() {
 
   const userInputRef = useRef();
   const errorRef = useRef();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [success, setSuccess] = useState(false);
 
 
   useEffect(() => {
@@ -56,14 +55,13 @@ export default function Request() {
           headers: { 'Content-Type': 'application/json' }
         })
       setEmail('')
-      setSuccess(true)
+      navigate('/reset')
     }
 
     catch (err) {
       if (err.response.status === 409) {
         setErrorMessage(err.response.data)
         console.log(err)
-        setSuccess(false)
         errorRef.current.focus()
       } else {
         setErrorMessage('request failed')

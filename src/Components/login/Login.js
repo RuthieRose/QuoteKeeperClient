@@ -32,7 +32,6 @@ export default function Login() {
   const [passwordFocus, setPasswordFocus] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [success, setSuccess] = useState(false);
 
   const updateLoggedIn = useContextUpdateLoggedIn()
   const updateUserId = useContextUpdateUserId()
@@ -86,24 +85,22 @@ export default function Login() {
         {
           headers: { 'Content-Type': 'application/json' }
         })
-      console.log(response.data)
+
       updateLoggedIn()
       updateUserId(response.data.id)
       updateAccessToken(response.data.accessToken)
       updateGreeting(response.data.name)
       setEmail('')
       setPassword('')
-      setSuccess(true)
     }
 
     catch (err) {
       if (err.response.status === 409) {
         setErrorMessage(err.response.data)
         console.log(err)
-        setSuccess(false)
         errorRef.current.focus()
       } else {
-        setErrorMessage('registration failed')
+        setErrorMessage('login failed')
         console.log(err)
       }
 

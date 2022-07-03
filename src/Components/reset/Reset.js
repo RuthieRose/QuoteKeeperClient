@@ -1,6 +1,6 @@
 import './reset.css';
 import axiosAPI from 'axios';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +9,7 @@ const axios = axiosAPI.create({
   baseURL: 'https://quotekeeper.herokuapp.com'
 })
 
-const TEMP_REGEX = /[a-zA-Z0-9]{14}/
+const TEMP_REGEX = /([a-zA-Z0-9]){14}/
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const RESET = '/passwordreset/reset';
 
@@ -17,6 +17,7 @@ export default function Reset() {
 
  const userInputRef = useRef();
  const errorRef = useRef();
+ const navigate = useNavigate();
 
  const [temp, setTemp] = useState('');
  const [validTemp, setValidTemp] = useState(false);
@@ -31,7 +32,6 @@ export default function Reset() {
  const [matchFocus, setMatchFocus] = useState(false);
 
  const [errorMessage, setErrorMessage] = useState('');
- const [success, setSuccess] = useState(false);
 
  useEffect(() => {
   userInputRef.current.focus();
@@ -41,7 +41,7 @@ export default function Reset() {
   const result = TEMP_REGEX.test(temp);
   setValidTemp(result);
 
- }, [password, matchPassword]);
+ }, [temp]);
 
  useEffect(() => {
   const result = PASSWORD_REGEX.test(password);
@@ -70,34 +70,22 @@ export default function Reset() {
       JSON.stringify({resetString: temp, password}), 
       {
        headers: { 'Content-Type': 'application/json'}})
-     console.log(response);
-     setSuccess(true)
-     // clear input fields
+     navigate('/login')
   }
 
   catch(err) {
    if (err.response.status === 409) {
     setErrorMessage(err.response.data)
     console.log(err)
-    setSuccess(false)
     errorRef.current.focus()
   } else {
-   setErrorMessage('registration failed')
+   setErrorMessage('reset failed')
   }
    
  }
  }
  return (
   <>
-   {success ? (
-
-    <section>
-     <h1>Success!</h1>
-     <p>
-      <Link to="/login">Sign In</Link>
-     </p>
-    </section>
-   ) : (
     <section>
      <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
      <h1>Reset Password</h1>
@@ -118,7 +106,7 @@ export default function Reset() {
 
       </label>
       <input
-       type="text"
+       type="password"
        id="temp"
        ref={userInputRef}
        autoComplete="off"
@@ -215,8 +203,6 @@ export default function Reset() {
 
      </form>
     </section>
-   )
-   }
   </>
  )
 }
