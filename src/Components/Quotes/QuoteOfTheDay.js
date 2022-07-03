@@ -42,7 +42,10 @@ export default function QuoteOfTheDay() {
 
 
   useEffect(() => {
-    updateCount(count => count + 1)
+    if (count === quotebank.length - 1) {
+      updateCount(0)
+    }
+    else updateCount(count => count + 1)
   }, [quote])
   
 

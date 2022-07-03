@@ -35,19 +35,16 @@ function App() {
 
     <div className="App">
       <Nav />
-      <header className="App-header">
-        <h1>
-          Quote Keeper
-        </h1>
-      </header>
+      <section>
+     {loggedIn ? null : <Parent />}
+     </section>
+      
      
      <main>
      {display ? <QuoteOfTheDay /> : null }
      </main>
      
-     <section>
-     {loggedIn ? null : <Parent />}
-     </section>
+
 
       <Routes>
 

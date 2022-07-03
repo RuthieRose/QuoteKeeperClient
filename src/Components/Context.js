@@ -16,8 +16,6 @@ const UpdateCurrAuthor = React.createContext()
 const Count = React.createContext()
 const UpdateCount = React.createContext()
 
-
-
 export function useContextLoggedIn() {
    return useContext(LoggedInContext)
 }
@@ -79,6 +77,7 @@ export function useContextUpdateCount() {
 }
 
 
+
 export function ContextProvider({ children }) {
 
    const [loggedIn, setLoggedIn] = useState(false)
@@ -122,6 +121,8 @@ export function ContextProvider({ children }) {
       setCount(num)
    }
 
+
+
    return (
       <LoggedInContext.Provider value={loggedIn}>
          <UpdateLoggedInContext.Provider value={updateLoggedIn}>
@@ -138,10 +139,9 @@ export function ContextProvider({ children }) {
                                           <UpdateCurrAuthor.Provider value={updateCurrAuthor}>
                                              <Count.Provider value={count}>
                                                 <UpdateCount.Provider value={updateCount}>
-                                                   {children}
+                                                      {children} 
                                                 </UpdateCount.Provider>
                                              </Count.Provider>
-
                                           </UpdateCurrAuthor.Provider>
                                        </CurrAuthor.Provider>
                                     </UpdateCurrQuote.Provider>

@@ -18,7 +18,7 @@ const LOGIN = '/users/login';
 
 
 
-export default function Login({setToggle}) {
+export default function Login({ setToggle }) {
 
   const loggedIn = useContextLoggedIn()
 
@@ -44,7 +44,7 @@ export default function Login({setToggle}) {
   const handleRegister = () => {
     setToggle('register')
   }
-  
+
 
   useEffect(() => {
     userInputRef.current.focus();
@@ -104,6 +104,11 @@ export default function Login({setToggle}) {
   }
   return (
     <>
+      <header className="App-header">
+        <h1>
+          Quote Keeper
+        </h1>
+      </header>
       <section>
         <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
         <h1>Login</h1>
@@ -127,7 +132,6 @@ export default function Login({setToggle}) {
             type="text"
             id="email"
             ref={userInputRef}
-            autoComplete="off"
             onChange={e => setEmail(e.target.value)}
             required
             aria-invalid={validEmail ? 'false' : 'true'}

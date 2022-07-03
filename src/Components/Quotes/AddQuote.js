@@ -21,7 +21,7 @@ export default function AddQuote({setDisplay}) {
 
  const axios = axiosAPI.create({
  baseURL: 'https://quotekeeper.herokuapp.com',
- headers: {'content-type': 'application/json', 'Authorization': `Bearer ${token}`}
+ headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
 })
 
  const [quote, setQuote] = useState('');
