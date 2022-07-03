@@ -15,6 +15,8 @@ const CurrAuthor = React.createContext()
 const UpdateCurrAuthor = React.createContext()
 const Count = React.createContext()
 const UpdateCount = React.createContext()
+const DisplayQuoteSet = React.createContext()
+const UpdateDisplayQuoteSet = React.createContext()
 
 export function useContextLoggedIn() {
    return useContext(LoggedInContext)
@@ -76,6 +78,14 @@ export function useContextUpdateCount() {
    return useContext(UpdateCount)
 }
 
+export function useContextDisplayQuoteSet() {
+   return useContext(DisplayQuoteSet)
+}
+
+export function useContextUpdateDisplayQuoteSet() {
+   return useContext(UpdateDisplayQuoteSet)
+}
+
 
 
 export function ContextProvider({ children }) {
@@ -87,6 +97,7 @@ export function ContextProvider({ children }) {
    const [currQuote, setCurrQuote] = useState('')
    const [currAuthor, setCurrAuthor] = useState('')
    const [count, setCount] = useState(0)
+   const [displayQuoteSet, setDisplayQuoteSet] = useState(null)
 
 
    function updateLoggedIn() {
@@ -121,6 +132,9 @@ export function ContextProvider({ children }) {
       setCount(num)
    }
 
+   function updateDisplayQuoteSet(arr) {
+      setDisplayQuoteSet([...arr])
+   }
 
 
    return (
@@ -139,7 +153,11 @@ export function ContextProvider({ children }) {
                                           <UpdateCurrAuthor.Provider value={updateCurrAuthor}>
                                              <Count.Provider value={count}>
                                                 <UpdateCount.Provider value={updateCount}>
-                                                      {children} 
+                                                   <UpdateDisplayQuoteSet.Provider value={updateDisplayQuoteSet}>
+                                                      <DisplayQuoteSet.Provider value={displayQuoteSet}>
+                                                         {children}
+                                                      </DisplayQuoteSet.Provider>
+                                                   </UpdateDisplayQuoteSet.Provider>
                                                 </UpdateCount.Provider>
                                              </Count.Provider>
                                           </UpdateCurrAuthor.Provider>

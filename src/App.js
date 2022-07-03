@@ -1,12 +1,13 @@
 
-import {useEffect, useState} from 'react'
-import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId} from './Components/Context'
+import { useEffect, useState } from 'react'
+import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId } from './Components/Context'
 import QuoteOfTheDay from './Components/Quotes/QuoteOfTheDay'
 import Parent from './Components/login/Parent'
 import SavedQuotes from './Components/Quotes/SavedQuotes'
 import AddQuote from './Components/Quotes/AddQuote'
 import Reset from './Components/reset/Reset'
 import Request from './Components/reset/Request'
+import DisplayQuote from './Components/Quotes/DisplayQuote'
 import Nav from './Components/elements/Nav'
 import Footer from './Components/elements/Footer'
 import { Navigate, Outlet, Routes, Route, useLocation } from 'react-router-dom'
@@ -36,14 +37,14 @@ function App() {
     <div className="App">
       <Nav />
       <section>
-     {loggedIn ? null : <Parent />}
-     </section>
-      
-     
-     <main>
-     {display ? <QuoteOfTheDay /> : null }
-     </main>
-     
+        {loggedIn ? null : <Parent />}
+      </section>
+
+
+      <main>
+        {display ? <QuoteOfTheDay /> : null}
+      </main>
+
 
 
       <Routes>
@@ -53,8 +54,10 @@ function App() {
 
 
         <Route path='/' element={<RequireAuth />}>
-          <Route path="saved" element={<SavedQuotes setDisplay={setDisplay} />} />
-          <Route path="add" element={<AddQuote setDisplay={setDisplay} />} />
+          <Route path="saved" element={<SavedQuotes setDisplay={setDisplay} />}/>
+          <Route path="display" element={<DisplayQuote setDisplay={setDisplay} />} />
+
+          <Route path="add" element={<AddQuote setDisplay={setDisplay}  />} />
         </Route>
       </Routes>
 

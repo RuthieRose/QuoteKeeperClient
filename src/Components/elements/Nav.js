@@ -11,6 +11,7 @@ export default function Nav() {
 
    { loggedIn ? <Link to="/saved">Saved Quotes</Link> : null }
    { loggedIn ? <Link to="/add">Add a Quote</Link> : null }
+   { loggedIn ? <Link to="/display">Feature Quote</Link> : null }
   </nav>
  )
 }

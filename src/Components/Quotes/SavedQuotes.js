@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom'
-import axiosAPI from 'axios'
+import { faTrash, faEnvelopeSquare, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useContextAccessToken, useContextUserId, useContextName } from '../Context'
+import { Link, useNavigate } from 'react-router-dom'
+import axiosAPI from 'axios'
+import { useContextAccessToken, useContextUserId, useContextName, useContextUpdateDisplayQuoteSet } from '../Context'
 import './saved.css'
 
 
@@ -15,6 +16,9 @@ export default function SavedQuotes({ setDisplay }) {
   const token = useContextAccessToken()
   const userId = useContextUserId()
   const name = useContextName()
+  const updateDisplayQuoteSet = useContextUpdateDisplayQuoteSet()
+
+  const navigate = useNavigate()
 
 
   let baseURL = 'https://quotekeeper.herokuapp.com'
@@ -63,6 +67,19 @@ export default function SavedQuotes({ setDisplay }) {
     }
   }
 
+  const displayQuote = (e) => {
+    let id = e.currentTarget.id 
+    let index;
+    console.log(array)
+    for (let i = 0; i < array.length; i++) {
+      if (array[i][2] === id) index = i
+    }
+    
+    console.log(array[index])
+    updateDisplayQuoteSet([array[index][0], array[index][1]])
+    navigate('/display')
+  }
+
 
 const handleHome = () => {
   setDisplay(true)
@@ -80,7 +97,11 @@ let quoteList = array.map((set, index) => {
   return (
     <div key={id}>
       <div> 
-        <FontAwesomeIcon icon={faTimes} onClick={deleteQuote} id={id}/>
+        <FontAwesomeIcon icon={faImage} onClick={displayQuote} id={id} />
+        <FontAwesomeIcon icon={faTwitter} />
+        <FontAwesomeIcon icon={faEnvelopeSquare} />
+        <FontAwesomeIcon icon={faTrash} onClick={deleteQuote} id={id}/>
+        
         </div>
       <h3>{quote}</h3>
       <p>{author}</p>
