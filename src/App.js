@@ -61,7 +61,7 @@ function App() {
           <Route path="random" element={<Random setDisplay={setDisplay} />} />
 
           <Route path="add" element={<AddQuote setDisplay={setDisplay}  />} />
-          <Route path="account" element={<Account  />} />
+          <Route path="account" element={<Account setDisplay={setDisplay} />} />
         </Route>
       </Routes>
 
