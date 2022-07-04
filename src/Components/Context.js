@@ -15,8 +15,10 @@ const CurrAuthor = React.createContext()
 const UpdateCurrAuthor = React.createContext()
 const Count = React.createContext()
 const UpdateCount = React.createContext()
-const DisplayQuoteSet = React.createContext()
-const UpdateDisplayQuoteSet = React.createContext()
+const DisplayQuote = React.createContext()
+const UpdateDisplayQuote = React.createContext()
+const DisplayAuthor = React.createContext()
+const UpdateDisplayAuthor = React.createContext()
 
 export function useContextLoggedIn() {
    return useContext(LoggedInContext)
@@ -78,12 +80,20 @@ export function useContextUpdateCount() {
    return useContext(UpdateCount)
 }
 
-export function useContextDisplayQuoteSet() {
-   return useContext(DisplayQuoteSet)
+export function useContextDisplayQuote() {
+   return useContext(DisplayQuote)
 }
 
-export function useContextUpdateDisplayQuoteSet() {
-   return useContext(UpdateDisplayQuoteSet)
+export function useContextUpdateDisplayQuote() {
+   return useContext(UpdateDisplayQuote)
+}
+
+export function useContextDisplayAuthor() {
+   return useContext(DisplayAuthor)
+}
+
+export function useContextUpdateDisplayAuthor() {
+   return useContext(UpdateDisplayAuthor)
 }
 
 
@@ -97,7 +107,8 @@ export function ContextProvider({ children }) {
    const [currQuote, setCurrQuote] = useState('')
    const [currAuthor, setCurrAuthor] = useState('')
    const [count, setCount] = useState(0)
-   const [displayQuoteSet, setDisplayQuoteSet] = useState(null)
+   const [displayQuote, setDisplayQuote] = useState(null)
+   const [displayAuthor, setDisplayAuthor] = useState(null)
 
 
    function updateLoggedIn() {
@@ -132,8 +143,12 @@ export function ContextProvider({ children }) {
       setCount(num)
    }
 
-   function updateDisplayQuoteSet(arr) {
-      setDisplayQuoteSet([...arr])
+   function updateDisplayQuote(quote) {
+      setDisplayQuote(quote)
+   }
+
+   function updateDisplayAuthor(author) {
+      setDisplayAuthor(author)
    }
 
 
@@ -153,11 +168,15 @@ export function ContextProvider({ children }) {
                                           <UpdateCurrAuthor.Provider value={updateCurrAuthor}>
                                              <Count.Provider value={count}>
                                                 <UpdateCount.Provider value={updateCount}>
-                                                   <UpdateDisplayQuoteSet.Provider value={updateDisplayQuoteSet}>
-                                                      <DisplayQuoteSet.Provider value={displayQuoteSet}>
-                                                         {children}
-                                                      </DisplayQuoteSet.Provider>
-                                                   </UpdateDisplayQuoteSet.Provider>
+                                                   <UpdateDisplayQuote.Provider value={updateDisplayQuote}>
+                                                      <DisplayQuote.Provider value={displayQuote}>
+                                                         <DisplayAuthor.Provider value={displayAuthor}>
+                                                            <UpdateDisplayAuthor.Provider value={updateDisplayAuthor}>
+                                                               {children}
+                                                            </UpdateDisplayAuthor.Provider>
+                                                         </DisplayAuthor.Provider>
+                                                      </DisplayQuote.Provider>
+                                                   </UpdateDisplayQuote.Provider>
                                                 </UpdateCount.Provider>
                                              </Count.Provider>
                                           </UpdateCurrAuthor.Provider>

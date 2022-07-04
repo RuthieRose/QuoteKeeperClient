@@ -8,6 +8,8 @@ import AddQuote from './Components/Quotes/AddQuote'
 import Reset from './Components/reset/Reset'
 import Request from './Components/reset/Request'
 import DisplayQuote from './Components/Quotes/DisplayQuote'
+import Random from './Components/Quotes/RandomQuote'
+import Account from './Components/reset/AccountManagement'
 import Nav from './Components/elements/Nav'
 import Footer from './Components/elements/Footer'
 import { Navigate, Outlet, Routes, Route, useLocation } from 'react-router-dom'
@@ -56,8 +58,10 @@ function App() {
         <Route path='/' element={<RequireAuth />}>
           <Route path="saved" element={<SavedQuotes setDisplay={setDisplay} />}/>
           <Route path="display" element={<DisplayQuote setDisplay={setDisplay} />} />
+          <Route path="random" element={<Random setDisplay={setDisplay} />} />
 
           <Route path="add" element={<AddQuote setDisplay={setDisplay}  />} />
+          <Route path="account" element={<Account  />} />
         </Route>
       </Routes>
 

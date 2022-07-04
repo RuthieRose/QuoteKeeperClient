@@ -61,6 +61,10 @@ export default function QuoteOfTheDay() {
     catch (err) {
       if (err) {
         console.log(err)
+        if (err.response.status == 403) {
+          navigate('/')
+          window.location.reload()
+        }
       }
     }
   }

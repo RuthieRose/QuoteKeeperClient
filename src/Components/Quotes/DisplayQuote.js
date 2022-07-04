@@ -1,24 +1,31 @@
-import { useEffect} from 'react'
-import { useContextDisplayQuoteSet } from '../Context'
 
+import { useContextDisplayQuote, useContextDisplayAuthor,  useContextUpdateDisplayQuote, useContextUpdateDisplayAuthor } from '../Context'
+import { Link, useNavigate } from 'react-router-dom'
 
-function DisplayQuote({setDisplay}) {
+function DisplayQuote({ setDisplay }) {
 
-  useEffect(() => {
-    setDisplay(false)
-   },[])
-  
-  let set = useContextDisplayQuoteSet()
+  setDisplay(false)
 
-  if (set === null) {
-    set = ['random', 'random']
+  const handleHome = () => {
+    setDisplay(true)
   }
 
-  let quote = set[0] 
-  let author = set[1]
+  const navigate = useNavigate()
+  const updateQuote = useContextUpdateDisplayQuote()
+  const updateAuthor = useContextUpdateDisplayAuthor()
+
+  let contextQuote = useContextDisplayQuote()
+  let contextAuthor = useContextDisplayAuthor()
+
 
   return (
-    <div>{quote} ~ {author}</div>
+    <>
+      <main>
+        {contextQuote && <div>{contextQuote} ~ {contextAuthor}</div>}
+      </main>
+
+      <div onClick={handleHome}><Link to='/'>Back to Quotes</Link></div>
+    </>
   )
 }
 

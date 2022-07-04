@@ -4,7 +4,7 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, useNavigate } from 'react-router-dom'
 import axiosAPI from 'axios'
-import { useContextAccessToken, useContextUserId, useContextName, useContextUpdateDisplayQuoteSet } from '../Context'
+import { useContextAccessToken, useContextUserId, useContextName, useContextUpdateDisplayQuote, useContextUpdateDisplayAuthor } from '../Context'
 import './saved.css'
 
 
@@ -16,14 +16,15 @@ export default function SavedQuotes({ setDisplay }) {
   const token = useContextAccessToken()
   const userId = useContextUserId()
   const name = useContextName()
-  const updateDisplayQuoteSet = useContextUpdateDisplayQuoteSet()
+  const updateDisplayQuote = useContextUpdateDisplayQuote()
+  const updateDisplayAuthor = useContextUpdateDisplayAuthor()
 
   const navigate = useNavigate()
 
 
-  let baseURL = 'https://quotekeeper.herokuapp.com'
   const axios = axiosAPI.create({
-    baseURL: 'https://quotekeeper.herokuapp.com',
+    baseURL: 'http://localhost:3000',
+    // baseURL: 'https://quotekeeper.herokuapp.com',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
   })
 
@@ -51,6 +52,10 @@ export default function SavedQuotes({ setDisplay }) {
 
     catch (err) {
       console.log(err)
+      if (err.response.status == 403) {
+        navigate('/')
+        window.location.reload()
+      }
     }
   }
 
@@ -73,11 +78,43 @@ export default function SavedQuotes({ setDisplay }) {
     console.log(array)
     for (let i = 0; i < array.length; i++) {
       if (array[i][2] === id) index = i
+    }  
+    console.log(array[index])
+    updateDisplayQuote(array[index][0])
+    updateDisplayAuthor(array[index][1])
+    navigate('/display')
+  }
+
+  const tweetQuote = (e) => {
+    let id = e.currentTarget.id 
+    let index;
+    console.log(array)
+    for (let i = 0; i < array.length; i++) {
+      if (array[i][2] === id) index = i
     }
     
     console.log(array[index])
-    updateDisplayQuoteSet([array[index][0], array[index][1]])
-    navigate('/display')
+    let quote = array[index][0] 
+    let author = array[index][1]
+    
+    window.open(`http://twitter.com/intent/tweet?text=${quote} ~ ${author}%0A https://quotekeeper.io`, '_blank')
+  }
+
+  const mailQuote = (e) => {
+    let id = e.currentTarget.id 
+    let index;
+    console.log(array)
+    for (let i = 0; i < array.length; i++) {
+      if (array[i][2] === id) index = i
+    }
+    
+    console.log(array[index])
+    let quote = array[index][0] 
+    let author = array[index][1]
+    
+  
+    window.location.href = `mailto:?subject=I wanted to share a quote with you! &body=${quote} ~ ${author}`
+   
   }
 
 
@@ -98,8 +135,8 @@ let quoteList = array.map((set, index) => {
     <div key={id}>
       <div> 
         <FontAwesomeIcon icon={faImage} onClick={displayQuote} id={id} />
-        <FontAwesomeIcon icon={faTwitter} />
-        <FontAwesomeIcon icon={faEnvelopeSquare} />
+        <FontAwesomeIcon icon={faTwitter} onClick={tweetQuote} id={id} />
+        <FontAwesomeIcon icon={faEnvelopeSquare} onClick={mailQuote} id={id} />
         <FontAwesomeIcon icon={faTrash} onClick={deleteQuote} id={id}/>
         
         </div>

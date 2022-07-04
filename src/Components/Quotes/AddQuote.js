@@ -26,11 +26,9 @@ export default function AddQuote({setDisplay}) {
 
  const [quote, setQuote] = useState('');
  const [validQuote, setValidQuote] = useState(false);
- const [quoteFocus, setQuoteFocus] = useState(false);
 
  const [author, setAuthor] = useState('');
  const [validAuthor, setValidAuthor] = useState(false);
- const [authorFocus, setAuthorFocus] = useState(false);
 
  const [errorMessage, setErrorMessage] = useState('');
 
@@ -85,6 +83,10 @@ export default function AddQuote({setDisplay}) {
     setErrorMessage(err.response.data)
     console.log(err)
     errorRef.current.focus()
+    if (err.response.status == 403) {
+      navigate('/')
+      window.location.reload()
+    }
   } 
    
  }
@@ -93,21 +95,19 @@ export default function AddQuote({setDisplay}) {
   <>
   
     <section>
-     <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
+
      <h1>Save a Quote</h1>
+
+     <p>
+
+Letters, spaces, underscores, hyphens, apostrophes, commas, periods and exclamation marks allowed.
+</p>
      <form onSubmit={handleSubmit}>
 
-      {/* Name */}
+      {/* Quote */}
       <label htmlFor="quote">
        Quote:
 
-       <span className={validQuote && quoteFocus ? 'valid' : 'hide'}>
-        <FontAwesomeIcon icon={faCheck} />
-       </span>
-
-       <span className={validQuote || !quote ? 'hide' : 'invalid'}>
-        <FontAwesomeIcon icon={faTimes} />
-       </span>
 
       </label>
 
@@ -121,29 +121,15 @@ export default function AddQuote({setDisplay}) {
        required
        aria-invalid={validQuote ? 'false' : 'true'}
        aria-describedby='quotenote'
-       onFocus={() => setQuoteFocus(true)}
-       onBlur={() => setQuoteFocus(false)}
       />
 
 
-      <p id="quotenote" className={quoteFocus && quote && !validQuote ? 'instructions' : 'offscreen'}>
-       <FontAwesomeIcon icon={faInfoCircle} className='icon' />
 
-       Letters, spaces, underscores, hyphens, apostrophes, commas, periods and exclamation marks allowed.
-      </p>
 
       {/* Author */}
 
       <label htmlFor="author">
        Author:
-
-       <span className={validAuthor && authorFocus ? 'valid' : 'hide'}>
-        <FontAwesomeIcon icon={faCheck} />
-       </span>
-
-       <span className={validAuthor || !author ? 'hide' : 'invalid'}>
-        <FontAwesomeIcon icon={faTimes} />
-       </span>
 
       </label>
       <input
@@ -154,16 +140,9 @@ export default function AddQuote({setDisplay}) {
        required
        aria-invalid={validAuthor ? 'false' : 'true'}
        aria-describedby='authornote'
-       onFocus={() => setAuthorFocus(true)}
-       onBlur={() => setAuthorFocus(false)}
       />
 
-      <p id="authornote" className={author && !validAuthor ? 'instructions' : 'offscreen'}>
-       <FontAwesomeIcon icon={faInfoCircle} className='icon' />
-       Letters, spaces, underscores, hyphens, apostrophes, commas, periods and exclamation marks allowed.<br />
-      </p>
 
-     
       <button disabled={!validAuthor || !validQuote ? true : false}>Save</button>
 
      </form>
