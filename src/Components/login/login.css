@@ -1,3 +1,55 @@
-* {
+.login {
+ margin: 0 auto;
+ align-items: center;
+ justify-content: center;
+ height: 3.5rem;
+ width: 100vw;
+ background: rgba(27, 15, 32, 0.5);
+ position: fixed;
+ top: 0;
+ left: 0;
+ font-size: 1.25rem;
+}
+
+.login-form {
+ margin: 1rem auto;
+ display: inline-flex;
+ text-align: center;
+}
+
+input, label, button {
+ margin-left: .75rem;
+
+}
+
+.link {
+ text-decoration: underline;
+ margin-left: .75rem;
+ margin-right: .75rem;
+ cursor: pointer;
+}
+
+input {
+ height: 1.5rem;
+ border-radius: .25rem;
+}
+
+label {
+ padding-top: .1rem;
+}
+
+input:focus {
+ outline: none;
+ border: 2px solid rgb(88, 4, 88);
+}
+
+button {
  color: white;
+ background: rgb(88, 4, 88);
+ border-radius: .25rem;
+ outline: none;
+ border: 2px solid rgb(247, 220, 248);
+ padding-left: .5rem;
+ padding-right: .5rem;
+ font-size: 1.15rem;
 }

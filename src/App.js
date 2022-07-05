@@ -1,17 +1,17 @@
-
 import { useEffect, useState } from 'react'
 import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId } from './Components/Context'
 import QuoteOfTheDay from './Components/Quotes/QuoteOfTheDay'
 import Parent from './Components/login/Parent'
 import SavedQuotes from './Components/Quotes/SavedQuotes'
 import AddQuote from './Components/Quotes/AddQuote'
-import Reset from './Components/reset/Reset'
-import Request from './Components/reset/Request'
+import Reset from './Components/account/Reset'
+import Request from './Components/account/Request'
 import DisplayQuote from './Components/Quotes/DisplayQuote'
 import Random from './Components/Quotes/RandomQuote'
-import Account from './Components/reset/AccountManagement'
+import Account from './Components/account/AccountManagement'
 import Nav from './Components/elements/Nav'
 import Footer from './Components/elements/Footer'
+import "@fontsource/nunito"
 import { Navigate, Outlet, Routes, Route, useLocation } from 'react-router-dom'
 
 function App() {
@@ -31,17 +31,18 @@ function App() {
   }
 
   let [display, setDisplay] = useState(true)
+  let [displayReset, setDisplayReset] = useState(false)
 
 
   return (
 
 
     <div className="App">
-      <Nav />
+  
       <section>
-        {loggedIn ? null : <Parent />}
+        {(loggedIn || displayReset) ? null : <Parent />}
       </section>
-
+      <Nav />
 
       <main>
         {display ? <QuoteOfTheDay /> : null}
@@ -51,8 +52,8 @@ function App() {
 
       <Routes>
 
-        <Route path="passwordreset/reset" element={<Reset />} />
-        <Route path="passwordreset/request" element={<Request />} />
+        <Route path="passwordreset/reset" element={<Reset setDisplayReset={setDisplayReset} />}  />
+        <Route path="passwordreset/request" element={<Request setDisplayReset={setDisplayReset} />} />
 
 
         <Route path='/' element={<RequireAuth />}>

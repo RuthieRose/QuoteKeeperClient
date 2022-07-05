@@ -7,8 +7,8 @@ import { useRef, useState, useEffect } from 'react';
 import { useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateUserId, useContextUpdateName } from '../Context'
 
 const axios = axiosAPI.create({
- // baseURL: 'https://quotekeeper.herokuapp.com'
- baseURL: 'http://localhost:3000'
+ baseURL: 'https://quotekeeper.herokuapp.com'
+
 })
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -101,16 +101,11 @@ export default function Login({ setToggle }) {
   }
   return (
     <>
-      <header className="App-header">
-        <h1>
-          Quote Keeper
-        </h1>
-      </header>
-      <section>
+ 
+      <section className='login'>
         <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-
+        <form className="login-form" onSubmit={handleSubmit}>
+          
           {/* Email */}
 
           <label htmlFor="email">
@@ -147,17 +142,18 @@ export default function Login({ setToggle }) {
 
           <button disabled={!validEmail || !validPassword ? true : false}>Login</button>
 
-          <div>
-
-            <span className="line">
-              <div onClick={handleRegister}>Need to register?</div>
-              <Link to="/passwordreset/request">Forgot password?</Link>
-
-            </span>
-          </div>
+      <span className="link" onClick={handleRegister}>Need to register? </span>
+       <Link to="/passwordreset/request"> Forgot password?</Link>
+  
+    
 
         </form>
       </section>
+      <header className="App-header">
+        <h1>
+          Quote Keeper
+        </h1>
+      </header>
 
     </>
   )

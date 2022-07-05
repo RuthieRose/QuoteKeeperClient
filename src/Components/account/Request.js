@@ -12,7 +12,7 @@ const axios = axiosAPI.create({
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const REQUEST = '/passwordreset/request';
 
-export default function Request() {
+export default function Request({setDisplayReset}) {
 
   const userInputRef = useRef();
   const errorRef = useRef();
@@ -28,6 +28,10 @@ export default function Request() {
   useEffect(() => {
     userInputRef.current.focus();
   }, []);
+
+  useEffect(() => {
+     setDisplayReset(true)
+  }, [])
 
   useEffect(() => {
     const result = EMAIL_REGEX.test(email);
@@ -55,7 +59,7 @@ export default function Request() {
           headers: { 'Content-Type': 'application/json' }
         })
       setEmail('')
-      navigate('/reset')
+      navigate('/passwordreset/reset')
     }
 
     catch (err) {
@@ -74,7 +78,7 @@ export default function Request() {
     <>
       <section>
         <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-        <h1>Request Password Reset</h1>
+        <h2>Request Password Reset</h2>
         <form onSubmit={handleSubmit}>
 
           {/* Email */}

@@ -20,8 +20,8 @@ function Random({ setDisplay }) {
   let [author, setAuthor] = useState(null)
 
   const axios = axiosAPI.create({
-    baseURL: 'http://localhost:3000',
-    // baseURL: 'https://quotekeeper.herokuapp.com',
+
+    baseURL: 'https://quotekeeper.herokuapp.com',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
   })
 

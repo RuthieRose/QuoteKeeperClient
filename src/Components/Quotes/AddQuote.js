@@ -96,7 +96,7 @@ export default function AddQuote({setDisplay}) {
   
     <section>
 
-     <h1>Save a Quote</h1>
+     <h2>Save a Quote</h2>
 
      <p>
 

@@ -77,28 +77,19 @@ export default function QuoteOfTheDay() {
 
   }
 
-  const copy = async () => {
-    if (!navigator.clipboard) {
-      return
-    }
-    try {
-      await navigator.clipboard.writeText(quote + ' ~ ' + author)
-    }
-    catch (err) {
-      console.log(err)
-    }
- 
-  }
-
   const tweet = () => {
     window.open(`http://twitter.com/intent/tweet?text=${quote} ~ ${author}%0A https://quotekeeper.io`, '_blank')
+  }
+
+  const mail = () => {
+    window.location.href = `mailto:?subject=I wanted to share a quote with you! &body=${quote} ~ ${author}`
   }
 
   return (
     <div className="quote">
       <div>{quote} ~ {author}</div>
       {loggedIn && <button onClick={saveQuote}>Save this quote</button>}
-      <button onClick={copy}>Copy To Clipboard</button>
+      <button onClick={mail}>Mail</button>
       <button onClick={tweet}>Tweet</button>
       <button onClick={getNewQuote}>Get a new quote</button>
     </div>

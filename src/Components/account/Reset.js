@@ -1,4 +1,4 @@
-import './register.css';
+import './reset.css';
 import axiosAPI from 'axios';
 import { Link, useNavigate } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
@@ -9,24 +9,22 @@ const axios = axiosAPI.create({
   baseURL: 'https://quotekeeper.herokuapp.com'
 })
 
-const NAME_REGEX = /^[a-zA-Z][a-zA-Z-_' ]{1,23}$/
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+const TEMP_REGEX = /([a-zA-Z0-9]){14}/
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER = '/users/register';
+const RESET = '/passwordreset/reset';
 
-export default function Register({ setToggle }) {
+export default function Reset({ setDisplayReset }) {
 
   const userInputRef = useRef();
   const errorRef = useRef();
-  const navigate = useNavigate()
-
-  const [name, setName] = useState('');
-  const [validName, setValidName] = useState(false);
-  const [nameFocus, setNameFocus] = useState(false);
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [validEmail, setValidEmail] = useState(false);
-  const [emailFocus, setEmailFocus] = useState(false);
+
+  const [temp, setTemp] = useState('');
+  const [validTemp, setValidTemp] = useState(false);
+  const [tempFocus, setTempFocus] = useState(false);
 
   const [password, setPassword] = useState('');
   const [validPassword, setValidPassword] = useState(false);
@@ -37,21 +35,20 @@ export default function Register({ setToggle }) {
   const [matchFocus, setMatchFocus] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userInputRef.current.focus();
   }, []);
 
   useEffect(() => {
-    const result = NAME_REGEX.test(name);
-    setValidName(result)
-  }, [name]);
+    setDisplayReset(true)
+  }, [])
 
   useEffect(() => {
-    const result = EMAIL_REGEX.test(email);
-    setValidEmail(result)
-  }, [email]);
+    const result = TEMP_REGEX.test(temp);
+    setValidTemp(result);
+
+  }, [temp]);
 
   useEffect(() => {
     const result = PASSWORD_REGEX.test(password);
@@ -63,125 +60,94 @@ export default function Register({ setToggle }) {
 
   useEffect(() => {
     setErrorMessage('');
-  }, [name, email, password, matchPassword]);
-
-  const handleLogin = () => {
-    setToggle('login')
-  }
+  }, [temp, password, matchPassword]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // additional validation 
-    const test1 = NAME_REGEX.test(name);
+    const test1 = TEMP_REGEX.test(temp);
     const test2 = PASSWORD_REGEX.test(password);
-    const test3 = EMAIL_REGEX.test(email);
-    if (!test1 || !test2 || !test3) {
+    if (!test1 || !test2) {
       setErrorMessage('Invalid entry');
       return;
     }
     try {
-      const response = await axios.post(REGISTER,
-        JSON.stringify({ name, email, password }),
+      const response = await axios.post(RESET,
+        JSON.stringify({ email, resetString: temp, password }),
         {
           headers: { 'Content-Type': 'application/json' }
         })
-      console.log(response);
-      setSuccess(true)
-      setToggle('login')
-      // clear input fields
+
+      setDisplayReset(false)
+
+      navigate('/')
     }
 
     catch (err) {
       if (err.response.status === 409) {
         setErrorMessage(err.response.data)
         console.log(err)
-        setSuccess(false)
         errorRef.current.focus()
       } else {
-        setErrorMessage('registration failed')
+        setErrorMessage('reset failed')
       }
 
     }
   }
   return (
     <>
-      <header className="App-header">
-        <h1>
-          Quote Keeper
-        </h1>
-      </header>
-
       <section>
         <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-        <h2>Register</h2>
+        <h2>Reset Password</h2>
         <form onSubmit={handleSubmit}>
 
-          {/* Name */}
-          <label htmlFor="name">
-            Name:
+           {/* Email */}
 
-            <span className={validName && nameFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validName || !name ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-
-          </label>
-
-
-          <input
-            type="text"
-            id="name"
-            ref={userInputRef}
-            autoComplete="off"
-            onChange={e => setName(e.target.value)}
-            required
-            aria-invalid={validName ? 'false' : 'true'}
-            aria-describedby='namenote'
-            onFocus={() => setNameFocus(true)}
-            onBlur={() => setNameFocus(false)}
-          />
-
-
-          <p id="namenote" className={nameFocus && name && !validName ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} className='icon' />
-            2 to 24 characters. <br />
-            Must begin with a letter. <br />
-            Letters, underscores, hyphens, apostrophes allowed.
-          </p>
-
-          {/* Email */}
-
-          <label htmlFor="email">
+           <label htmlFor="email">
             Email:
-
-            <span className={validEmail && emailFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validEmail || !email ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-
           </label>
+
           <input
             type="text"
             id="email"
-            autoComplete="off"
+            ref={userInputRef}
             onChange={e => setEmail(e.target.value)}
             required
             aria-invalid={validEmail ? 'false' : 'true'}
             aria-describedby='emailnote'
-            onFocus={() => setEmailFocus(true)}
-            onBlur={() => setEmailFocus(false)}
           />
 
-          <p id="emailnote" className={email && !validEmail ? 'instructions' : 'offscreen'}>
+          {/* Temp */}
+
+          <label htmlFor="temp">
+            Temporary Password:
+
+            <span className={validTemp && tempFocus ? 'valid' : 'hide'}>
+              <FontAwesomeIcon icon={faCheck} />
+            </span>
+
+            <span className={validTemp || !temp ? 'hide' : 'invalid'}>
+              <FontAwesomeIcon icon={faTimes} />
+            </span>
+
+          </label>
+          <input
+            type="password"
+            id="temp"
+            ref={userInputRef}
+            autoComplete="off"
+            onChange={e => setTemp(e.target.value)}
+            required
+            aria-invalid={validTemp ? 'false' : 'true'}
+            aria-describedby='tempnote'
+            onFocus={() => setTempFocus(true)}
+            onBlur={() => setTempFocus(false)}
+          />
+
+          <p id="tempnote" className={temp && !validTemp ? 'instructions' : 'offscreen'}>
             <FontAwesomeIcon icon={faInfoCircle} className='icon' />
-            Must be a valid email address. <br />
+            The temporary password is letters and numbers only. <br />
           </p>
 
           {/* Password */}
@@ -252,19 +218,12 @@ export default function Register({ setToggle }) {
             Must match the first password input field. <br />
           </p>
 
-          <button disabled={!validName || !validEmail || !validPassword || !validMatch ? true : false}>Register</button>
+          <button disabled={!validTemp || !validPassword || !validMatch ? true : false}>Reset Password</button>
 
-
-
-          <span className="line">
-            <div onClick={handleLogin}>Need to login?</div>
-
-          </span>
-
+        
 
         </form>
       </section>
-
     </>
   )
 }

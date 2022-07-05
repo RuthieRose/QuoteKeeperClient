@@ -19,8 +19,8 @@ function Account() {
  const token = useContextAccessToken()
 
  const axios = axiosAPI.create({
-  baseURL: 'http://localhost:3000',
-  // baseURL: 'https://quotekeeper.herokuapp.com',
+
+  baseURL: 'https://quotekeeper.herokuapp.com',
   headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
  })
 
@@ -76,13 +76,13 @@ function Account() {
  return (
   <>
    <header className="App-header">
-    <h1>
+    <h2>
      Account Management
-    </h1>
-    <h2>Delete Account</h2>
+    </h2>
+    <h3>Delete Account</h3>
    </header>
    <section>
-    <h3>Warning! Account deletion is permanent. </h3>
+    <h4>Warning! Account deletion is permanent. </h4>
     <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
     <p>To delete your account, enter your email address and password.</p>
     <form onSubmit={handleSubmit}>
