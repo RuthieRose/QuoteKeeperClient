@@ -7,7 +7,7 @@ import { useRef, useState, useEffect } from 'react';
 import { useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateUserId, useContextUpdateName } from '../Context'
 
 const axios = axiosAPI.create({
- baseURL: 'https://quotekeeper.herokuapp.com'
+  baseURL: 'https://quotekeeper.herokuapp.com'
 
 })
 
@@ -101,20 +101,21 @@ export default function Login({ setToggle }) {
   }
   return (
     <>
- 
+
       <section className='login'>
-        <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
+
         <form className="login-form" onSubmit={handleSubmit}>
-          
+
           {/* Email */}
 
-          <label htmlFor="email">
+          <label htmlFor="email" className='label-email'>
             Email:
           </label>
 
           <input
             type="text"
             id="email"
+            className="login-input input-email"
             ref={userInputRef}
             onChange={e => setEmail(e.target.value)}
             required
@@ -123,9 +124,10 @@ export default function Login({ setToggle }) {
           />
 
 
+
           {/* Password */}
 
-          <label htmlFor="password">
+          <label htmlFor="password" className="label-password">
             Password:
 
           </label>
@@ -134,21 +136,27 @@ export default function Login({ setToggle }) {
           <input
             type="password"
             id="password"
+            className="login-input input-password"
             onChange={e => setPassword(e.target.value)}
             required
             aria-invalid={validPassword ? 'false' : 'true'}
             aria-describedby='passwordnote'
           />
 
-          <button disabled={!validEmail || !validPassword ? true : false}>Login</button>
+          <button className="button-set" disabled={!validEmail || !validPassword ? true : false}>Login</button>
 
-      <span className="link" onClick={handleRegister}>Need to register? </span>
-       <Link to="/passwordreset/request"> Forgot password?</Link>
-  
-    
+
+
+          <span className="link link1-set" onClick={handleRegister}>Need to register? </span>
+
+          <Link to="/passwordreset/request" className="link link2-set"> Forgot password?</Link>
+
+
+
 
         </form>
       </section>
+      <div className="error">  <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p></div>
       <header className="App-header">
         <h1>
           Quote Keeper
