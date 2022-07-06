@@ -6,13 +6,10 @@
 body {
   background: linear-gradient(190deg, rgb(26, 26, 30), rgb(44, 34, 51));
   font-family: 'Nunito', sans-serif;
-  width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  color: rgb(247, 220, 248)
-}
 
 /* In other CSS pages as well */
 button {
@@ -26,3 +23,4 @@ button {
   font-size: 1.15rem;
   cursor: pointer;
  }
+

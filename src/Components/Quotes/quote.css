@@ -6,6 +6,7 @@ button:hover {
 }
 
 .quote-container {
+ margin: 0 auto;
  padding-top: 3rem;
  text-align: center;
  min-height: 75vh;
@@ -17,7 +18,16 @@ button:hover {
 }
 
 .quote {
- margin: 2rem;
+ margin-top: 2rem;
+ margin-bottom: 2rem;
+ padding-left: 2rem;
+ padding-right: 2rem;
+ color: rgb(247, 220, 248);
+}
+
+.author {
+ font-size: 3rem;
+ color: rgb(247, 220, 248);
 }
 
 
@@ -26,20 +36,34 @@ button:hover {
 }
 
 .quote-button {
- margin: .25rem;
+ margin: .5rem;
+}
+
+@media screen and (max-width: 850px) {
+ .quote-container {
+  padding-top: 4rem;
+  font-size: 4rem;
+  min-height: 70vh;
+ }
+ .author {
+  font-size: 1.5rem;
+ }
 }
 
 @media screen and (max-width: 650px) {
  .quote-container {
   padding-top: 5rem;
-  font-size: 3rem;
-  min-height: 65vh;
+  font-size: 2rem;
  }
+
 }
 
 @media screen and (max-width: 350px) {
  .quote-container {
-  font-size: 2rem;
-  min-height: 50vh;
+  font-size: 1.5rem;
+  min-height: 45vh;
+ }
+ .author {
+  font-size: 1.25rem;
  }
 }

@@ -10,6 +10,7 @@ export default function Nav({ setDisplay }) {
 
   const loggedIn = useContextLoggedIn()
 
+
   const logout = () => {
 
     setDisplay(true)
@@ -20,11 +21,11 @@ export default function Nav({ setDisplay }) {
   return (
     <nav>
 
-      {loggedIn ? <Link to="/saved">Saved Quotes</Link> : null}
-      {loggedIn ? <Link to="/add">Add a Quote</Link> : null}
-      {loggedIn ? <Link to="/random">Feature Quote</Link> : null}
-      {loggedIn ? <Link to="/account"><FontAwesomeIcon icon={faUser} /></Link> : null}
-      {loggedIn ? <FontAwesomeIcon className="logout" icon={faRightFromBracket} onClick={logout} /> : null}
+      {loggedIn ? <Link id="link1" to="/saved">Saved Quotes</Link> : null}
+      {loggedIn ? <Link id="link2" to="/add">Add a Quote</Link> : null}
+      {loggedIn ? <Link id="link3" to="/random">Feature Quote</Link> : null}
+      {loggedIn ? <Link id="link4"  to="/account"><FontAwesomeIcon icon={faUser} /></Link> : null}
+      {loggedIn ? <FontAwesomeIcon id="link5" className="logout" icon={faRightFromBracket} onClick={logout} /> : null}
     </nav>
   )
 }

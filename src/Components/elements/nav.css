@@ -3,15 +3,16 @@ nav {
  position: absolute;
  width: 100vw;
  height: 3rem;
- padding-top: 1.5rem;
+ padding-top: 2rem;
  margin-bottom: .5rem;
  display: inline-flex;
- justify-content: space-evenly
+ justify-content: space-evenly;
 }
 
-.citation {
- margin-top: .22rem;
+a, .link, #link5 {
+ color: rgb(247, 220, 248);
 }
+
 
 .logout {
  cursor: pointer;

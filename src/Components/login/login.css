@@ -1,4 +1,5 @@
 .login {
+
  margin: 0 auto;
  margin-left: 0;
  padding: center;
@@ -33,6 +34,10 @@ input {
 
 .login-input {
  width: 10rem;
+}
+
+label {
+ color:rgb(247, 220, 248);
 }
 
 .link {
@@ -212,7 +217,7 @@ button:hover {
  grid-column: 6/8;
  grid-row: 4;
  font-size:1rem;
- padding-right: 1rem;
+ /* padding-right: 1rem; */
 }
 }
 
@@ -262,7 +267,7 @@ button:hover {
  grid-column: 7/10;
  grid-row: 4;
  font-size:1rem;
- padding-right: 2  rem;
+ /* padding-right: 2rem; */
 }
 }
 

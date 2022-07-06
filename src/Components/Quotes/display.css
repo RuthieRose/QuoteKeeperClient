@@ -1,0 +1,160 @@
+
+.quote-container-display {
+ margin: 0 auto;
+ padding-top: 3rem;
+ text-align: center;
+ min-height: 75vh;
+ display: flex;
+ font-size: 5rem;
+ padding-bottom: 2rem;
+ align-items: center;
+ justify-content: center;
+}
+
+.quote-display {
+ margin-bottom: 2rem;
+ padding-left: 2rem;
+ padding-right: 2rem;
+ padding-bottom: 1rem;
+ padding-top: 3rem;
+ color: rgb(247, 220, 248);
+}
+
+.author-display {
+ font-size: 3rem;
+ color: rgb(247, 220, 248);
+ padding-bottom: 3rem;
+}
+
+
+.buttons {
+ text-align: center;
+}
+
+.quote-button {
+ margin: .5rem;
+}
+
+.options-parent {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+.options {
+ display: inline-flex;
+ justify-content: center;
+ margin: 0 auto;
+ text-align: center;
+}
+.ferns, .fire, .purple, .purple-mountain, .stars, .ocean, .none {
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin: .5rem;
+  cursor: pointer;
+  
+}
+
+.ferns:hover, .fire:hover, .purple:hover, .purple-mountain:hover, .stars:hover, .sunset-ocean:hover, .white-sands:hover {
+ border: 3px solid white;
+ cursor: pointer;
+}
+
+
+.back-parent {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+.back-to-quotes {
+ margin: 0 auto;
+ text-align: center;
+ margin: 0 auto;
+}
+
+@media screen and (max-width: 850px) {
+ .quote-container-display {
+  padding-top: 4rem;
+  font-size: 4rem;
+  min-height: 70vh;
+ }
+ .author-display {
+  font-size: 1.5rem;
+ }
+}
+
+@media screen and (max-width: 650px) {
+ .quote-container-display {
+  padding-top: 5rem;
+  font-size: 2rem;
+ }
+
+}
+
+@media screen and (max-width: 350px) {
+ .quote-container-display {
+  font-size: 1.5rem;
+  min-height: 45vh;
+ }
+ .author-display {
+  font-size: 1.25rem;
+ }
+}
+
+.quote-display-frame {
+ padding-top: 1rem;
+ padding-bottom: 2rem;
+}
+.ferns {
+ background: rgb(4, 83, 47);
+}
+
+.fernsDisplay {
+ background: center/cover no-repeat url('../../../public/quote-backgrounds/ferns.jpeg');
+ color: rgb(247, 220, 248);
+}
+.fire {
+ background: linear-gradient(black, rgb(166, 46, 3))
+}
+
+.fireDisplay {
+ background: center/cover no-repeat url('../../../public/quote-backgrounds/fire.jpg');
+ color: rgb(247, 220, 248);
+}
+.purple {
+ background: purple;
+}
+.purpleDisplay{
+ background: center/cover no-repeat url('../../../public/quote-backgrounds/purple.jpeg');
+ color: rgb(247, 220, 248);
+}
+.purple-mountain {
+ background: linear-gradient(purple, white)
+}
+.mountainDisplay{
+ background: center/cover no-repeat url('../../../public/quote-backgrounds/purplemountain.jpeg');
+ color: rgb(247, 220, 248);
+}
+.stars {
+ background: linear-gradient(black, rgb(0, 94, 128));
+}
+.starsDisplay{
+ background: center/cover no-repeat url('../../../public/quote-backgrounds/stars.jpg');
+
+}
+.ocean {
+ background: linear-gradient(rgb(1, 50, 90), pink);
+}
+
+.oceanDisplay{
+  background: center/cover no-repeat url('../../../public/quote-backgrounds/ocean.jpeg');
+
+ }
+ .none {
+  background: rgba(0,0,0,0);;
+ }
+ 
+.noneDisplay {
+ background: rgba(0,0,0,0);
+}

@@ -87,14 +87,17 @@ export default function QuoteOfTheDay() {
 
   return (
     <>
-    <div className="quote-container">
-      <div className="quote">{quote} ~ {author}</div>
-    </div>
-    <div className="buttons">
-        {loggedIn && <button onClick={saveQuote}>Save this quote</button>}
+      <div className="quote-container">
+        <div>
+          <div className="quote">{quote}</div>
+          <div className="author">{author}</div>
+        </div>
+      </div>
+      <div className="buttons">
+        {loggedIn && <button className="quote-button" onClick={saveQuote}>Save this quote</button>}
         <button className="quote-button" onClick={mail}>Mail</button>
-        <button className="quote-button"  onClick={tweet}>Tweet</button>
-        <button className="quote-button"  onClick={getNewQuote}>Get a new quote</button>
+        <button className="quote-button" onClick={tweet}>Tweet</button>
+        <button className="quote-button" onClick={getNewQuote}>Get a new quote</button>
       </div>
     </>
   )
