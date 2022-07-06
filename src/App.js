@@ -38,11 +38,11 @@ function App() {
 
 
     <div className="App">
-  
+
       <section>
         {(loggedIn || displayReset) ? null : <Parent />}
       </section>
-      <Nav />
+      {loggedIn && <Nav setDisplay={setDisplay} />}
 
       <main>
         {display ? <QuoteOfTheDay /> : null}
@@ -52,16 +52,16 @@ function App() {
 
       <Routes>
 
-        <Route path="passwordreset/reset" element={<Reset setDisplayReset={setDisplayReset} />}  />
+        <Route path="passwordreset/reset" element={<Reset setDisplayReset={setDisplayReset} />} />
         <Route path="passwordreset/request" element={<Request setDisplayReset={setDisplayReset} />} />
 
 
         <Route path='/' element={<RequireAuth />}>
-          <Route path="saved" element={<SavedQuotes setDisplay={setDisplay} />}/>
+          <Route path="saved" element={<SavedQuotes setDisplay={setDisplay} />} />
           <Route path="display" element={<DisplayQuote setDisplay={setDisplay} />} />
           <Route path="random" element={<Random setDisplay={setDisplay} />} />
 
-          <Route path="add" element={<AddQuote setDisplay={setDisplay}  />} />
+          <Route path="add" element={<AddQuote setDisplay={setDisplay} />} />
           <Route path="account" element={<Account setDisplay={setDisplay} />} />
         </Route>
       </Routes>

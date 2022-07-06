@@ -1,8 +1,45 @@
 
-* {
- color: white;
+
+
+button:hover {
+ background: rgb(88,4,88);
 }
 
-button {
- color: rgb(38,39,40)
+.quote-container {
+ padding-top: 3rem;
+ text-align: center;
+ min-height: 75vh;
+ display: flex;
+ font-size: 5rem;
+ padding-bottom: 3rem;
+ align-items: center;
+ justify-content: center;
+}
+
+.quote {
+ margin: 2rem;
+}
+
+
+.buttons {
+ text-align: center;
+}
+
+.quote-button {
+ margin: .25rem;
+}
+
+@media screen and (max-width: 650px) {
+ .quote-container {
+  padding-top: 5rem;
+  font-size: 3rem;
+  min-height: 65vh;
+ }
+}
+
+@media screen and (max-width: 350px) {
+ .quote-container {
+  font-size: 2rem;
+  min-height: 50vh;
+ }
 }

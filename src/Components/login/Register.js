@@ -265,11 +265,6 @@ export default function Register({ setToggle }) {
 
       <div className="error"> <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p></div>
       <article className="tos">TERMS OF SERVICE: This app is for entertainment purposes only and no guarantee or warranty of any kind is offered. The developer has made an effort to follow best practices, but you still use at your own risk. This should go without saying, but please don't do anything malicious or illegal with your access to this site either. There, isn't that the shortest TOS you've ever read? :) </article>
-      <header className="App-header">
-        <h1>
-          Quote Keeper
-        </h1>
-      </header>
 
     </>
   )

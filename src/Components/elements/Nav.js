@@ -4,25 +4,27 @@ import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './nav.css'
 
-export default function Nav() {
+export default function Nav({ setDisplay }) {
 
- const navigate = useNavigate() 
+  const navigate = useNavigate()
 
- const loggedIn = useContextLoggedIn()
+  const loggedIn = useContextLoggedIn()
 
- const logout = () => {
-   navigate('/')
-   window.location.reload()
- }
+  const logout = () => {
 
- return (
-  <nav>
+    setDisplay(true)
+    navigate('/')
+    window.location.reload()
+  }
 
-   { loggedIn ? <Link to="/saved">Saved Quotes</Link> : null }
-   { loggedIn ? <Link to="/add">Add a Quote</Link> : null }
-   { loggedIn ? <Link to="/random">Feature Quote</Link> : null }
-   { loggedIn ? <Link to ="/account"><FontAwesomeIcon icon={faUser} /></Link> : null}
-   { loggedIn ? <FontAwesomeIcon icon={faRightFromBracket} onClick={logout} /> : null}
-  </nav>
- )
+  return (
+    <nav>
+
+      {loggedIn ? <Link to="/saved">Saved Quotes</Link> : null}
+      {loggedIn ? <Link to="/add">Add a Quote</Link> : null}
+      {loggedIn ? <Link to="/random">Feature Quote</Link> : null}
+      {loggedIn ? <Link to="/account"><FontAwesomeIcon icon={faUser} /></Link> : null}
+      {loggedIn ? <FontAwesomeIcon className="logout" icon={faRightFromBracket} onClick={logout} /> : null}
+    </nav>
+  )
 }

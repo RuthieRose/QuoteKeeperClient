@@ -149,11 +149,6 @@ export default function Login({ setToggle }) {
         </form>
       </section>
       <div className="error">  <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p></div>
-      <header className="App-header">
-        <h1>
-          Quote Keeper
-        </h1>
-      </header>
 
     </>
   )

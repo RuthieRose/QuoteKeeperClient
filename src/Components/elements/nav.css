@@ -1,3 +1,31 @@
-* {
- color: white;
+nav {
+ border-bottom: 2px solid rgb(247, 220, 248);
+ position: absolute;
+ width: 100vw;
+ height: 3rem;
+ padding-top: 1.5rem;
+ margin-bottom: .5rem;
+ display: inline-flex;
+ justify-content: space-evenly
+}
+
+.citation {
+ margin-top: .22rem;
+}
+
+.logout {
+ cursor: pointer;
+ margin-top: .15rem;
+}
+
+@media screen and (max-width: 650px) {
+ nav {
+  flex-wrap: wrap;
+ }
+}
+
+@media screen and (max-width: 300px) {
+ nav {
+  padding-bottom: .5rem;
+ }
 }

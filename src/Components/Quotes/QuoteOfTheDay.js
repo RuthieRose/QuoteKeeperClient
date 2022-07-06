@@ -1,8 +1,8 @@
-import { useState, useEffect, useReducer} from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import axiosAPI from 'axios';
 import { Link, useNavigate } from 'react-router-dom'
 import './quote.css';
-import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId, useContextCurrQuote, useContextUpdateCurrQuote, useContextCurrAuthor, useContextUpdateCurrAuthor, useContextCount, useContextUpdateCount} from '../Context'
+import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId, useContextCurrQuote, useContextUpdateCurrQuote, useContextCurrAuthor, useContextUpdateCurrAuthor, useContextCount, useContextUpdateCount } from '../Context'
 
 export default function QuoteOfTheDay() {
 
@@ -47,12 +47,12 @@ export default function QuoteOfTheDay() {
     }
     else updateCount(count => count + 1)
   }, [quote])
-  
+
 
   const saveQuote = async () => {
 
     try {
-     
+
       const response = await axios.post(`${ADD}/${userId}`,
         JSON.stringify({ quote, author }))
       navigate('/saved')
@@ -68,7 +68,7 @@ export default function QuoteOfTheDay() {
       }
     }
   }
-  
+
 
   const getNewQuote = () => {
     let next = quotebank[count]
@@ -86,12 +86,16 @@ export default function QuoteOfTheDay() {
   }
 
   return (
-    <div className="quote">
-      <div>{quote} ~ {author}</div>
-      {loggedIn && <button onClick={saveQuote}>Save this quote</button>}
-      <button onClick={mail}>Mail</button>
-      <button onClick={tweet}>Tweet</button>
-      <button onClick={getNewQuote}>Get a new quote</button>
+    <>
+    <div className="quote-container">
+      <div className="quote">{quote} ~ {author}</div>
     </div>
+    <div className="buttons">
+        {loggedIn && <button onClick={saveQuote}>Save this quote</button>}
+        <button className="quote-button" onClick={mail}>Mail</button>
+        <button className="quote-button"  onClick={tweet}>Tweet</button>
+        <button className="quote-button"  onClick={getNewQuote}>Get a new quote</button>
+      </div>
+    </>
   )
 }

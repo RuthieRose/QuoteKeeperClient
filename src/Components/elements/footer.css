@@ -1,4 +1,21 @@
+footer {
+ border-top: 2px solid rgb(247, 220, 248);
+ position: absolute;
+ width: 100vw;
+ height: 3rem;
+ padding-top: 1.5rem;
+ margin-top: 1rem;
+ display: inline-flex;
+ justify-content: space-evenly
+}
 
-.citation, a {
- color: white;
+.citation {
+ margin-top: .22rem;
+}
+
+@media screen and (max-width: 650px) {
+ footer {
+  display: block;
+  text-align: center;
+ }
 }
