@@ -1,6 +1,5 @@
 import './register.css';
 import axiosAPI from 'axios';
-import { Link, useNavigate } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +17,7 @@ export default function Register({ setToggle }) {
 
   const userInputRef = useRef();
   const errorRef = useRef();
-  const navigate = useNavigate()
+
 
   const [name, setName] = useState('');
   const [validName, setValidName] = useState(false);
@@ -37,7 +36,6 @@ export default function Register({ setToggle }) {
   const [matchFocus, setMatchFocus] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userInputRef.current.focus();
@@ -87,7 +85,6 @@ export default function Register({ setToggle }) {
           headers: { 'Content-Type': 'application/json' }
         })
       console.log(response);
-      setSuccess(true)
       setToggle('login')
       // clear input fields
     }
@@ -96,7 +93,6 @@ export default function Register({ setToggle }) {
       if (err.response.status === 409) {
         setErrorMessage(err.response.data)
         console.log(err)
-        setSuccess(false)
         errorRef.current.focus()
       } else {
         setErrorMessage('registration failed')
@@ -106,19 +102,12 @@ export default function Register({ setToggle }) {
   }
   return (
     <>
-      <header className="App-header">
-        <h1>
-          Quote Keeper
-        </h1>
-      </header>
+      <section className='register'>
 
-      <section>
-        <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-        <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
+        <form className="register-form" onSubmit={handleSubmit}>
 
           {/* Name */}
-          <label htmlFor="name">
+          <label htmlFor="name" className='register-email register-label-name'>
             Name:
 
             <span className={validName && nameFocus ? 'valid' : 'hide'}>
@@ -135,6 +124,7 @@ export default function Register({ setToggle }) {
           <input
             type="text"
             id="name"
+            className="register-input register-input-name"
             ref={userInputRef}
             autoComplete="off"
             onChange={e => setName(e.target.value)}
@@ -146,16 +136,11 @@ export default function Register({ setToggle }) {
           />
 
 
-          <p id="namenote" className={nameFocus && name && !validName ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} className='icon' />
-            2 to 24 characters. <br />
-            Must begin with a letter. <br />
-            Letters, underscores, hyphens, apostrophes allowed.
-          </p>
+
 
           {/* Email */}
 
-          <label htmlFor="email">
+          <label htmlFor="email" className="register-label-email">
             Email:
 
             <span className={validEmail && emailFocus ? 'valid' : 'hide'}>
@@ -170,6 +155,7 @@ export default function Register({ setToggle }) {
           <input
             type="text"
             id="email"
+            className="register-input-email"
             autoComplete="off"
             onChange={e => setEmail(e.target.value)}
             required
@@ -179,14 +165,11 @@ export default function Register({ setToggle }) {
             onBlur={() => setEmailFocus(false)}
           />
 
-          <p id="emailnote" className={email && !validEmail ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} className='icon' />
-            Must be a valid email address. <br />
-          </p>
+
 
           {/* Password */}
 
-          <label htmlFor="password">
+          <label htmlFor="password" className="register-label-password">
             Password:
 
             <span className={validPassword && passwordFocus ? 'valid' : 'hide'}>
@@ -203,6 +186,7 @@ export default function Register({ setToggle }) {
           <input
             type="password"
             id="password"
+            className="register-input-password"
             onChange={e => setPassword(e.target.value)}
             required
             aria-invalid={validPassword ? 'false' : 'true'}
@@ -212,16 +196,11 @@ export default function Register({ setToggle }) {
           />
 
 
-          <p id="passwordnote" className={password && !validPassword ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} className='icon' />
-            8 to 24 characters. <br />
-            Must have a number, upper case letter, a lower case letter, and a special character. <br />
-            Allowed special characters: <span aria-label='exclamation mark'>!</span> <span aria-label='at symbol'>@</span> <span aria-label='dollar sign'>$</span> <span aria-label="hashtag">#</span> <span aria-label='percent'>%</span>
-          </p>
+
 
           {/* Match Password */}
 
-          <label htmlFor="matchPassword">
+          <label htmlFor="matchPassword" className="register-label-match">
             Confirm Password:
 
             <span className={validMatch && matchPassword && matchFocus ? 'valid' : 'hide'}>
@@ -238,6 +217,7 @@ export default function Register({ setToggle }) {
           <input
             type="password"
             id="matchPassword"
+            className="register-input-match"
             onChange={e => setMatchPassword(e.target.value)}
             required
             aria-invalid={validMatch ? 'false' : 'true'}
@@ -247,16 +227,11 @@ export default function Register({ setToggle }) {
           />
 
 
-          <p id="confirmnote" className={matchFocus && !validMatch ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} className='icon' />
-            Must match the first password input field. <br />
-          </p>
-
-          <button disabled={!validName || !validEmail || !validPassword || !validMatch ? true : false}>Register</button>
+          <button className="register-button" disabled={!validName || !validEmail || !validPassword || !validMatch ? true : false}>Register</button>
 
 
 
-          <span className="line">
+          <span className="line login-set">
             <div onClick={handleLogin}>Need to login?</div>
 
           </span>
@@ -264,6 +239,37 @@ export default function Register({ setToggle }) {
 
         </form>
       </section>
+      <p id="namenote" className={nameFocus && name && !validName ? 'instructions' : 'offscreen'}>
+        <FontAwesomeIcon icon={faInfoCircle} className='icon' />
+        2 to 24 characters. Must begin with a letter. Letters, underscores, hyphens, apostrophes allowed.
+      </p>
+
+      <p id="emailnote" className={email && !validEmail ? 'instructions' : 'offscreen'}>
+        <FontAwesomeIcon icon={faInfoCircle} className='icon' />
+        Must be a valid email address.
+      </p>
+
+      <p id="passwordnote" className={password && !validPassword ? 'instructions' : 'offscreen'}>
+        <FontAwesomeIcon icon={faInfoCircle} className='icon' />
+        8 to 24 characters. 
+        Must have a number, upper case letter, a lower case letter, and a special character.
+        Allowed special characters: <span className="password-span" aria-label='exclamation mark'>!</span> <span  className="password-span"  aria-label='at symbol'>@</span> <span className="password-span"  aria-label='dollar sign'>$</span> <span className="password-span"  aria-label="hashtag">#</span> <span className="password-span"  aria-label='percent'>%</span>
+      </p>
+
+      <p id="confirmnote" className={matchFocus && !validMatch ? 'instructions' : 'offscreen'}>
+        <FontAwesomeIcon icon={faInfoCircle} className='icon' />
+        Must match the first password input field. <br />
+      </p>
+
+
+
+      <div className="error"> <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p></div>
+      <article className="tos">TERMS OF SERVICE: This app is for entertainment purposes only and no guarantee or warranty of any kind is offered. The developer has made an effort to follow best practices, but you still use at your own risk. This should go without saying, but please don't do anything malicious or illegal with your access to this site either. There, isn't that the shortest TOS you've ever read? :) </article>
+      <header className="App-header">
+        <h1>
+          Quote Keeper
+        </h1>
+      </header>
 
     </>
   )

@@ -1,5 +1,4 @@
 
-import { useContextLoggedIn } from '../Context';
 import './login.css'
 import axiosAPI from 'axios';
 import { Link } from 'react-router-dom'
@@ -18,8 +17,6 @@ const LOGIN = '/users/login';
 
 
 export default function Login({ setToggle }) {
-
-  // const loggedIn = useContextLoggedIn()
 
   const userInputRef = useRef();
   const errorRef = useRef();
@@ -101,9 +98,7 @@ export default function Login({ setToggle }) {
   }
   return (
     <>
-
       <section className='login'>
-
         <form className="login-form" onSubmit={handleSubmit}>
 
           {/* Email */}
@@ -150,9 +145,6 @@ export default function Login({ setToggle }) {
           <span className="link link1-set" onClick={handleRegister}>Need to register? </span>
 
           <Link to="/passwordreset/request" className="link link2-set"> Forgot password?</Link>
-
-
-
 
         </form>
       </section>
