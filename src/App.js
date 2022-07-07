@@ -52,8 +52,8 @@ function App() {
 
       <Routes>
 
-        <Route path="passwordreset/reset" element={<Reset setDisplay={setDisplay} setDisplayReset={setDisplayReset} />} />
-        <Route path="passwordreset/request" element={<Request  setDisplay={setDisplay} setDisplayReset={setDisplayReset} />} />
+        <Route path="reset" element={<Reset setDisplay={setDisplay} setDisplayReset={setDisplayReset} />} />
+        <Route path="request" element={<Request  setDisplay={setDisplay} setDisplayReset={setDisplayReset} />} />
 
 
         <Route path='/' element={<RequireAuth />}>

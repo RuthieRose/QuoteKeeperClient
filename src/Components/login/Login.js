@@ -144,7 +144,7 @@ export default function Login({ setToggle }) {
 
           <span className="link link1-set" onClick={handleRegister}>Need to register? </span>
 
-          <Link to="/passwordreset/request" className="link link2-set"> Forgot password?</Link>
+          <Link to="/request" className="link link2-set"> Forgot password?</Link>
 
         </form>
       </section>

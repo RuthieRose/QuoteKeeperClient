@@ -9,6 +9,7 @@
  justify-content: space-evenly;
  color: rgb(247, 220, 248);
  width: 100vw;
+ bottom: 0
 }
 
 .footer-container a {
@@ -27,10 +28,16 @@
 
  .footer-container {
   display: block;
-  width: 96vw;
+  width: 100vw;
+  bottom: 24px;
  }
 
  .citation, .site-author {
   font-size: 1rem;
+  padding-bottom: .5rem;
+ }
+
+ .site-author {
+  padding-bottom: 1rem;
  }
 }

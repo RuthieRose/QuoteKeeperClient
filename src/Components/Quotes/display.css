@@ -1,11 +1,10 @@
 
 .quote-container-display {
  margin: 0 auto;
- padding-top: 1rem;
+ padding-top: 5rem;
  text-align: center;
- min-height: 75vh;
  display: flex;
- font-size: 5rem;
+ font-size: 4rem;
  padding-bottom: 2rem;
  align-items: center;
  justify-content: center;
@@ -16,15 +15,18 @@
  margin-bottom: 2rem;
  padding-left: 2rem;
  padding-right: 2rem;
- padding-bottom: 1rem;
- padding-top: 3rem;
+ padding-bottom: 5rem;
+ padding-top: 10rem;
+ min-height: 18rem;
+ max-height: 20rem;
  color: white;
 }
 
 .author-display {
  font-size: 3rem;
  color: white;
- padding-bottom: 2rem;
+ padding-bottom: 3rem;
+ max-height: 10rem;
 }
 
 

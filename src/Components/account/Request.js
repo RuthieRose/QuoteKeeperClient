@@ -61,7 +61,7 @@ export default function Request({setDisplayReset, setDisplay}) {
           headers: { 'Content-Type': 'application/json' }
         })
       setEmail('')
-      navigate('/passwordreset/reset')
+      navigate('/reset')
     }
 
     catch (err) {

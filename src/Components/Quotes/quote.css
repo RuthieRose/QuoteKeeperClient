@@ -9,9 +9,9 @@ button:hover {
  margin: 0 auto;
  padding-top: 2rem;
  text-align: center;
- min-height: 75vh;
+ min-height: 49rem;
  display: flex;
- font-size: 5rem;
+ font-size: 4rem;
  padding-bottom: 1rem;
  align-items: center;
  justify-content: center;
@@ -41,9 +41,9 @@ button:hover {
 
 @media screen and (max-width: 850px) {
  .quote-container {
-  padding-top: 4rem;
+  padding-top: 3rem;
   font-size: 4rem;
-  min-height: 70vh;
+  min-height: 49rem;
  }
  .author {
   font-size: 1.5rem;
@@ -52,18 +52,38 @@ button:hover {
 
 @media screen and (max-width: 650px) {
  .quote-container {
-  padding-top: 5rem;
-  font-size: 2rem;
+  font-size: 1.75rem;
+  min-height: 40rem;
+ }
+
+ .author {
+  font-size: 1.25rem;
+ }
+
+ .quote-button {
+  font-size: 1rem;
+ }
+
+}
+
+@media screen and (max-width: 500px) {
+ .quote-container {
+  font-size: 1.5rem;
+  min-height: 25rem;
+ }
+
+ .quote-button {
+  font-size: 1rem;
  }
 
 }
 
 @media screen and (max-width: 350px) {
  .quote-container {
-  font-size: 1.5rem;
-  min-height: 45vh;
+  font-size: 1.25rem;
+  min-height: 24rem;
  }
  .author {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
  }
 }
