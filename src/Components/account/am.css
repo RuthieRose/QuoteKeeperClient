@@ -1,18 +1,36 @@
 .app-header {
- padding-top: 7rem;
+ padding-top: 15rem;
  text-align: center;
  font-size: 1.5rem;
- color: rgb(247, 220, 248);
+ color: whitesmoke;
 }
 
 .warning {
- color: rgb(247, 220, 248);
+ color: whitesmoke;
  text-align: center;
  margin: 2rem;
- min-height: 50vh;
+ min-height: 20rem;
 }
 
 .warning-email, .warning-password {
  margin-top: 1rem;
  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 650px) {
+ 
+ .app-header {
+  padding-top: 8rem;
+ }
+ .warning {
+  min-height: 6rem;
+ }
+
+}
+
+@media screen and (max-width: 350px) {
+ .app-header {
+  font-size: 1rem;
+  padding-top: 7rem;
+ }
 }

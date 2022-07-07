@@ -1,16 +1,18 @@
 .reset-request {
- margin-top: 6rem;
- color: rgb(247, 220, 248);
+ 
+ padding-top: 6rem;
+ color: whitesmoke;
  text-align: center;
- min-height: 50vh;
  align-items: center;
  justify-content: center;
+ overflow-y: hidden;
 }
 
 .reset-request div {
  margin: 1rem;
 }
 
-.icon { 
- color: rgb(247, 220, 248);
+.request-button {
+ margin-top: 1rem;
+ margin-bottom: 1rem;
 }

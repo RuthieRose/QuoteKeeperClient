@@ -7,7 +7,7 @@
  text-align: center;
  height: 3.75rem;
  font-size: 1.25rem;
- border-bottom: 2px solid rgb(247, 220, 248);
+ border-bottom: 2px solid whitesmoke;
  background: rgba(27, 15, 32, 0.5);
 }
 
@@ -37,7 +37,7 @@ input {
 }
 
 label {
- color:rgb(247, 220, 248);
+ color:whitesmoke;
 }
 
 .link {
@@ -59,15 +59,15 @@ label {
 
 input:focus {
  outline: none;
- border: 2px solid rgb(247,220,248);
+ border: 2px solid whitesmoke;
 }
 
 button {
- color: white;
- background: rgb(64, 38, 64);
+ color: whitesmoke;
+ background: rgb(57, 61, 67);
  border-radius: .25rem;
  outline: none;
- border: 2px solid rgb(247, 220, 248);
+ border: 2px solid whitesmoke;
  padding-left: .5rem;
  padding-right: .5rem;
  font-size: 1.15rem;
@@ -75,7 +75,7 @@ button {
 }
 
 button:hover {
- background: rgb(88,4,88);
+ background: rgb(4,28,88);
 }
 
 /* grid display */
@@ -259,14 +259,15 @@ button:hover {
 .link1-set {
  grid-column: 1/7;
  grid-row: 4;
- font-size: 1rem;
- padding-left: .5rem;
+ font-size: .8rem;
+ padding-left: 2rem;
+
 }
 
 .link2-set {
  grid-column: 7/10;
  grid-row: 4;
- font-size:1rem;
+ font-size:.8rem;
  /* padding-right: 2rem; */
 }
 }

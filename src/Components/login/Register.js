@@ -1,7 +1,7 @@
 import './register.css';
 import axiosAPI from 'axios';
 import { useRef, useState, useEffect } from 'react';
-import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const axios = axiosAPI.create({
@@ -110,14 +110,6 @@ export default function Register({ setToggle }) {
           <label htmlFor="name" className='register-email register-label-name'>
             Name:
 
-            <span className={validName && nameFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validName || !name ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-
           </label>
 
 
@@ -143,14 +135,6 @@ export default function Register({ setToggle }) {
           <label htmlFor="email" className="register-label-email">
             Email:
 
-            <span className={validEmail && emailFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validEmail || !email ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-
           </label>
           <input
             type="text"
@@ -171,14 +155,6 @@ export default function Register({ setToggle }) {
 
           <label htmlFor="password" className="register-label-password">
             Password:
-
-            <span className={validPassword && passwordFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validPassword || !password ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
 
           </label>
 
@@ -202,14 +178,6 @@ export default function Register({ setToggle }) {
 
           <label htmlFor="matchPassword" className="register-label-match">
             Confirm Password:
-
-            <span className={validMatch && matchPassword && matchFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validMatch || !matchPassword ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
 
           </label>
 

@@ -63,6 +63,11 @@ export default function Reset({ setDisplayReset, setDisplay }) {
     setErrorMessage('');
   }, [temp, password, matchPassword]);
 
+  const handleHome = () => {
+    setDisplay(true)
+    setDisplayReset(false)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -222,11 +227,12 @@ export default function Reset({ setDisplayReset, setDisplay }) {
             Must match the first password input field. <br />
           </p>
           </div>
-          <button disabled={!validTemp || !validPassword || !validMatch ? true : false}>Reset Password</button>
+          <button  className="request-button" disabled={!validTemp || !validPassword || !validMatch ? true : false}>Reset Password</button>
 
         
 
         </form>
+        <div className='back-parent'  onClick={handleHome}><Link  className="back-to-quotes" to='/'>Back to Quotes</Link></div>
       </section>
     </>
   )

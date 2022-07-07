@@ -1,43 +1,10 @@
 .footer-container {
- border-top: 2px solid rgb(247, 220, 248);
- height: 3rem;
- padding-top: 1.5rem;
- margin-top: 1rem;
- margin-left: auto;
- margin-right: auto;
- display: inline-flex;
- justify-content: space-evenly;
- color: rgb(247, 220, 248);
- width: 100vw;
- bottom: 0
+ padding-top: 2rem;
+ padding-left: 1rem;
+ padding-bottom: .5rem;
+ font-size: .9rem;
+ color: whitesmoke;
+ bottom: 10px;
+ text-align: center;
 }
 
-.footer-container a {
- color: rgb(247, 220, 248);
-}
-
-.heart {
- font-size: .75rem;
-}
-
-@media screen and (max-width: 650px) {
- footer {
-  text-align: center;
-  padding-bottom: 1rem;
- }
-
- .footer-container {
-  display: block;
-  width: 100vw;
-  bottom: 24px;
- }
-
- .citation, .site-author {
-  font-size: 1rem;
-  padding-bottom: .5rem;
- }
-
- .site-author {
-  padding-bottom: 1rem;
- }
-}

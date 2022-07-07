@@ -2,22 +2,24 @@
   margin: 0;
   padding: 0;
 }
-
-body {
-  background: linear-gradient(190deg, rgb(26, 26, 30), rgb(44, 34, 51));
-  font-family: 'Nunito', sans-serif;
+html {
   height: 100%;
+}
+body {
+  background: linear-gradient(190deg, rgb(26, 26, 30), rgb(3, 43, 68));
+  font-family: 'Nunito', sans-serif;
   overflow-x: hidden;
+  min-height: 100%;
 }
 
 
 /* In other CSS pages as well */
 button {
-  color: white;
+  color: whitesmoke;
   background: rgb(64, 38, 64);
   border-radius: .25rem;
   outline: none;
-  border: 2px solid rgb(247, 220, 248);
+  border: 2px solid whitesmoke;
   padding-left: .5rem;
   padding-right: .5rem;
   font-size: 1.15rem;

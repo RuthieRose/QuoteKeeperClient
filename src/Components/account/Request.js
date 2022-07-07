@@ -1,7 +1,7 @@
 import './reset.css'
 import './Request.css'
 import axiosAPI from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ const axios = axiosAPI.create({
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const REQUEST = '/passwordreset/request';
 
-export default function Request({setDisplayReset, setDisplay}) {
+export default function Request({ setDisplayReset, setDisplay }) {
 
   const userInputRef = useRef();
   const errorRef = useRef();
@@ -31,8 +31,8 @@ export default function Request({setDisplayReset, setDisplay}) {
   }, []);
 
   useEffect(() => {
-     setDisplayReset(true)
-     setDisplay(false)
+    setDisplayReset(true)
+    setDisplay(false)
   }, [])
 
   useEffect(() => {
@@ -43,6 +43,11 @@ export default function Request({setDisplayReset, setDisplay}) {
   useEffect(() => {
     setErrorMessage('');
   }, [email]);
+
+  const handleHome = () => {
+    setDisplay(true)
+    setDisplayReset(false)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,20 +120,15 @@ export default function Request({setDisplayReset, setDisplay}) {
             Must be a valid email address. <br />
           </p>
 
-         
 
 
 
-          <button disabled={!validEmail ? true : false}>Request</button>
-
-          <p>
-
-            <span className="line">
-
-            </span>
-          </p>
+          <div>
+            <button className="request-button" disabled={!validEmail ? true : false}>Request</button>
+          </div>
 
         </form>
+        <div className='back-parent' onClick={handleHome}><Link className="back-to-quotes" to='/'>Back to Quotes</Link></div>
       </section>
 
     </>

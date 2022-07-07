@@ -1,33 +1,45 @@
 
 
-
 button:hover {
- background: rgb(88,4,88);
+ background: rgb(4,28,88);
 }
+
 
 .quote-container {
  margin: 0 auto;
- padding-top: 2rem;
+ padding-top: 4rem;
  text-align: center;
- min-height: 49rem;
- display: flex;
  font-size: 4rem;
  padding-bottom: 1rem;
- align-items: center;
- justify-content: center;
+
 }
 
 .quote {
- margin-top: 2rem;
+ margin-top: 5rem;
  margin-bottom: 2rem;
+ margin-left: auto;
+ margin-right: auto;
  padding-left: 2rem;
  padding-right: 2rem;
- color: rgb(247, 220, 248);
+ text-align: center;
+ min-height: 27rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 70vw;
+ color: whitesmoke;
 }
 
+.quote-parent-author-div {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
 .author {
  font-size: 3rem;
- color: rgb(247, 220, 248);
+ color: whitesmoke;
+ height: 8rem;
+ margin: 0 auto;
 }
 
 
@@ -39,11 +51,36 @@ button:hover {
  margin: .5rem;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1459px) {
+ .quote-container {
+  font-size: 3rem;
+ }
+ .author {
+  font-size: 2rem;
+ }
+
+ .quote {
+  min-height: 25rem;
+ }
+}
+
+@media screen and (max-width: 1190px) {
  .quote-container {
   padding-top: 3rem;
-  font-size: 4rem;
-  min-height: 49rem;
+ }
+
+ .quote {
+  font-size: 2.5rem;
+ }
+
+ .author {
+  height: 6rem;
+ }
+}
+
+@media screen and (max-width: 850px) {
+ .quote {
+  min-height: 22rem;
  }
  .author {
   font-size: 1.5rem;
@@ -51,13 +88,13 @@ button:hover {
 }
 
 @media screen and (max-width: 650px) {
- .quote-container {
-  font-size: 1.75rem;
-  min-height: 40rem;
+ .quote{
+  font-size: 2rem;
  }
 
  .author {
   font-size: 1.25rem;
+  height: 3rem;
  }
 
  .quote-button {
@@ -66,12 +103,11 @@ button:hover {
 
 }
 
-@media screen and (max-width: 500px) {
- .quote-container {
-  font-size: 1.5rem;
-  min-height: 25rem;
- }
+@media screen and (max-width: 450px) {
 
+  .author {
+   padding-bottom: 1rem;
+  }
  .quote-button {
   font-size: 1rem;
  }
@@ -79,9 +115,10 @@ button:hover {
 }
 
 @media screen and (max-width: 350px) {
- .quote-container {
-  font-size: 1.25rem;
-  min-height: 24rem;
+ 
+ .quote {
+  font-size: 1.5rem;
+  min-height: 12rem;
  }
  .author {
   font-size: 1.15rem;

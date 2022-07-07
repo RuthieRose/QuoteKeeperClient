@@ -4,11 +4,8 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-container"> 
-      <div className="citation">
-      Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank" rel="noreferrer">ZenQuotes API</a>
-      </div>
-      <div className="site-author">Made with <span className="heart">💖</span> by <a href="mailto:doodlepath@gmail.com">ruthie </a> © {date}</div>
-      </div>
+      Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank" rel="noreferrer">ZenQuotes API</a>{' '}<span className="heart">✨</span> 
+      {' '}Made with <span className="heart">💖</span> by <a href="mailto:doodlepath@gmail.com">ruthie </a> © {date}</div>
     </footer>
   )
 }

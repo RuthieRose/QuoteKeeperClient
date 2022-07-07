@@ -1,15 +1,16 @@
 .add-quotes {
- padding-top: 7rem;
+ padding-top: 10rem;
  text-align: center;
 }
 
 .save-quote-heading {
  font-size: 2rem;
- color: rgb(247, 220, 248);
+ color: whitesmoke;
 }
 
 .info-add {
- color: rgb(247, 220, 248);
+ color: whitesmoke;
+ font-size: 1.25rem;
  margin: 2rem;
 }
 
@@ -36,7 +37,14 @@
  font-size: 1rem;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 400px) {
+ .add-quotes {
+  padding-top: 8rem;
+ }
+
+ .info-add {
+  font-size: 1rem;
+ }
  .textarea {
   width: 12rem;
  }

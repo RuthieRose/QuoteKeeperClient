@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import axiosAPI from 'axios';
 import { Link, useNavigate } from 'react-router-dom'
 import './quote.css';
@@ -56,7 +56,7 @@ export default function QuoteOfTheDay() {
 
       const response = await axios.post(`${ADD}/${userId}`,
         JSON.stringify({ quote, author }))
-        updateSaved();
+      updateSaved();
       navigate('/saved')
     }
 
@@ -90,8 +90,10 @@ export default function QuoteOfTheDay() {
   return (
     <>
       <div className="quote-container">
-        <div>
+        <div className="quote-parent-quote-div">
           <div className="quote">{quote}</div>
+        </div>
+        <div className="quote-parent-author-div">
           <div className="author">{author}</div>
         </div>
       </div>

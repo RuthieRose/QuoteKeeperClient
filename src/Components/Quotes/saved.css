@@ -1,20 +1,21 @@
 .saved-quotes-container {
- color: rgb(247, 220, 248);
- padding-top: 7rem;
-align-items: center;
-justify-content: center;
-text-align: center;
-max-width: 50rem;
-min-height: 49rem;
-margin-left: auto;
-margin-right: auto;
+ color: whitesmoke;
+ padding-top: 8rem;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ max-width: 50rem;
+ min-height: 47rem;
+ margin-left: auto;
+ margin-right: auto;
 }
 
 .saved-quotes {
  font-size: 2rem;
  text-align: center;
+ margin-top: 2rem;
  margin-bottom: 1rem;
- border-bottom: 2px solid rgb(247, 220, 248);
+ border-bottom: 2px solid whitesmoke;
  width: 20rem;
  margin-left: auto;
  margin-right: auto;
@@ -39,7 +40,7 @@ margin-right: auto;
  margin-right: auto;
  padding-bottom: 1rem;
  margin-bottom: 2rem;
- border-bottom: 2px solid rgb(247, 220, 248);
+ border-bottom: 2px solid whitesmoke;
 }
 
 .page-buttons {
@@ -54,9 +55,28 @@ margin-right: auto;
  cursor: pointer;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 400px) {
+
+ .saved-quotes-container{
+  padding-top: 5.25rem;
+  min-height: 20rem;
+ }
+
+ .saved-quotes {
+  font-size: 1.25rem;
+  width: 12rem;
+ }
  .page-button {
   margin-left: 1rem;
   margin-right: 1rem;
+ }
+
+ .saved-quote {
+  font-size: 1rem;
+ }
+
+ .saved-author {
+  padding-bottom: .5rem;
+  margin-bottom: .5rem;
  }
 }
