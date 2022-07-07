@@ -1,4 +1,5 @@
 import './reset.css'
+import './Request.css'
 import axiosAPI from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
@@ -12,7 +13,7 @@ const axios = axiosAPI.create({
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const REQUEST = '/passwordreset/request';
 
-export default function Request({setDisplayReset}) {
+export default function Request({setDisplayReset, setDisplay}) {
 
   const userInputRef = useRef();
   const errorRef = useRef();
@@ -31,6 +32,7 @@ export default function Request({setDisplayReset}) {
 
   useEffect(() => {
      setDisplayReset(true)
+     setDisplay(false)
   }, [])
 
   useEffect(() => {
@@ -76,9 +78,9 @@ export default function Request({setDisplayReset}) {
   }
   return (
     <>
-      <section>
+      <section className="reset-request">
         <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-        <h2>Request Password Reset</h2>
+        <h2 className="request">Request Password Reset</h2>
         <form onSubmit={handleSubmit}>
 
           {/* Email */}

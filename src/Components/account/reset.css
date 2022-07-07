@@ -1,0 +1,16 @@
+.reset-request {
+ margin-top: 6rem;
+ color: rgb(247, 220, 248);
+ text-align: center;
+ min-height: 50vh;
+ align-items: center;
+ justify-content: center;
+}
+
+.reset-request div {
+ margin: 1rem;
+}
+
+.icon { 
+ color: rgb(247, 220, 248);
+}

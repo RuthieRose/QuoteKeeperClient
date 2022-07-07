@@ -13,7 +13,7 @@ const TEMP_REGEX = /([a-zA-Z0-9]){14}/
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const RESET = '/passwordreset/reset';
 
-export default function Reset({ setDisplayReset }) {
+export default function Reset({ setDisplayReset, setDisplay }) {
 
   const userInputRef = useRef();
   const errorRef = useRef();
@@ -42,6 +42,7 @@ export default function Reset({ setDisplayReset }) {
 
   useEffect(() => {
     setDisplayReset(true)
+    setDisplay(false)
   }, [])
 
   useEffect(() => {
@@ -80,7 +81,7 @@ export default function Reset({ setDisplayReset }) {
         })
 
       setDisplayReset(false)
-
+      setDisplay(true)
       navigate('/')
     }
 
@@ -97,13 +98,13 @@ export default function Reset({ setDisplayReset }) {
   }
   return (
     <>
-      <section>
+      <section className="reset-request">
         <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
         <h2>Reset Password</h2>
         <form onSubmit={handleSubmit}>
 
            {/* Email */}
-
+  <div className="email-reset">
            <label htmlFor="email">
             Email:
           </label>
@@ -117,9 +118,9 @@ export default function Reset({ setDisplayReset }) {
             aria-invalid={validEmail ? 'false' : 'true'}
             aria-describedby='emailnote'
           />
-
+</div>
           {/* Temp */}
-
+<div className="temp-reset">
           <label htmlFor="temp">
             Temporary Password:
 
@@ -132,6 +133,8 @@ export default function Reset({ setDisplayReset }) {
             </span>
 
           </label>
+     
+
           <input
             type="password"
             id="temp"
@@ -144,14 +147,15 @@ export default function Reset({ setDisplayReset }) {
             onFocus={() => setTempFocus(true)}
             onBlur={() => setTempFocus(false)}
           />
-
+  
           <p id="tempnote" className={temp && !validTemp ? 'instructions' : 'offscreen'}>
             <FontAwesomeIcon icon={faInfoCircle} className='icon' />
             The temporary password is letters and numbers only. <br />
           </p>
+          </div>
 
           {/* Password */}
-
+          <div className="password-reset">
           <label htmlFor="password">
             Password:
 
@@ -180,13 +184,13 @@ export default function Reset({ setDisplayReset }) {
 
           <p id="passwordnote" className={password && !validPassword ? 'instructions' : 'offscreen'}>
             <FontAwesomeIcon icon={faInfoCircle} className='icon' />
-            8 to 24 characters. <br />
-            Must have a number, upper case letter, a lower case letter, and a special character. <br />
+            8 to 24 characters. 
+            Must have a number, upper case letter, a lower case letter, and a special character. 
             Allowed special characters: <span aria-label='exclamation mark'>!</span> <span aria-label='at symbol'>@</span> <span aria-label='dollar sign'>$</span> <span aria-label="hashtag">#</span> <span aria-label='percent'>%</span>
           </p>
-
+          </div>
           {/* Match Password */}
-
+<div className="password-match">
           <label htmlFor="matchPassword">
             Confirm Password:
 
@@ -217,7 +221,7 @@ export default function Reset({ setDisplayReset }) {
             <FontAwesomeIcon icon={faInfoCircle} className='icon' />
             Must match the first password input field. <br />
           </p>
-
+          </div>
           <button disabled={!validTemp || !validPassword || !validMatch ? true : false}>Reset Password</button>
 
         
