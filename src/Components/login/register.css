@@ -76,11 +76,13 @@ button {
 input {
  padding-left: .2rem;
  padding-right: .2rem;
+
 }
 
 .login-set {
  text-decoration: underline;
  cursor: pointer;
+ color: rgb(247,220,248);
 }
 
 
