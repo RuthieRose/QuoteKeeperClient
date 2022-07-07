@@ -1,0 +1,18 @@
+.app-header {
+ padding-top: 7rem;
+ text-align: center;
+ font-size: 1.5rem;
+ color: rgb(247, 220, 248);
+}
+
+.warning {
+ color: rgb(247, 220, 248);
+ text-align: center;
+ margin: 2rem;
+ min-height: 50vh;
+}
+
+.warning-email, .warning-password {
+ margin-top: 1rem;
+ margin-bottom: 1rem;
+}

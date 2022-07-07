@@ -1,7 +1,7 @@
 
 .quote-container-display {
  margin: 0 auto;
- padding-top: 3rem;
+ padding-top: 1rem;
  text-align: center;
  min-height: 75vh;
  display: flex;
@@ -12,18 +12,19 @@
 }
 
 .quote-display {
+ 
  margin-bottom: 2rem;
  padding-left: 2rem;
  padding-right: 2rem;
  padding-bottom: 1rem;
  padding-top: 3rem;
- color: rgb(247, 220, 248);
+ color: white;
 }
 
 .author-display {
  font-size: 3rem;
- color: rgb(247, 220, 248);
- padding-bottom: 3rem;
+ color: white;
+ padding-bottom: 2rem;
 }
 
 
@@ -49,15 +50,15 @@
 .ferns, .fire, .purple, .purple-mountain, .stars, .ocean, .none {
   height: 1.5rem;
   width: 1.5rem;
-  border: 2px solid white;
+  border: 1px solid white;
   border-radius: 5px;
   margin: .5rem;
   cursor: pointer;
   
 }
 
-.ferns:hover, .fire:hover, .purple:hover, .purple-mountain:hover, .stars:hover, .sunset-ocean:hover, .white-sands:hover {
- border: 3px solid white;
+.ferns:hover, .fire:hover, .purple:hover, .purple-mountain:hover, .stars:hover, .ocean:hover, .sands:hover, .none:hover {
+ border: 2px solid white;
  cursor: pointer;
 }
 
@@ -73,10 +74,16 @@
  margin: 0 auto;
 }
 
+@media screen and (max-width: 1010px) {
+  .quote-display {
+    padding-top: 2rem;
+    font-size: 4rem;
+  }
+}
+
 @media screen and (max-width: 850px) {
  .quote-container-display {
   padding-top: 4rem;
-  font-size: 4rem;
   min-height: 70vh;
  }
  .author-display {
@@ -112,7 +119,7 @@
 
 .fernsDisplay {
  background: center/cover no-repeat url('../../../public/quote-backgrounds/ferns.jpeg');
- color: rgb(247, 220, 248);
+
 }
 .fire {
  background: linear-gradient(black, rgb(166, 46, 3))
@@ -120,21 +127,21 @@
 
 .fireDisplay {
  background: center/cover no-repeat url('../../../public/quote-backgrounds/fire.jpg');
- color: rgb(247, 220, 248);
+
 }
 .purple {
  background: purple;
 }
 .purpleDisplay{
  background: center/cover no-repeat url('../../../public/quote-backgrounds/purple.jpeg');
- color: rgb(247, 220, 248);
+
 }
 .purple-mountain {
  background: linear-gradient(purple, white)
 }
 .mountainDisplay{
  background: center/cover no-repeat url('../../../public/quote-backgrounds/purplemountain.jpeg');
- color: rgb(247, 220, 248);
+
 }
 .stars {
  background: linear-gradient(black, rgb(0, 94, 128));

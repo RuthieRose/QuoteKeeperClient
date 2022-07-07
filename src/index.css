@@ -6,7 +6,7 @@
 body {
   background: linear-gradient(190deg, rgb(26, 26, 30), rgb(44, 34, 51));
   font-family: 'Nunito', sans-serif;
-  height: 100vh;
+  height: 100%;
   overflow-x: hidden;
 }
 

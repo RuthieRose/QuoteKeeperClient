@@ -7,12 +7,12 @@ button:hover {
 
 .quote-container {
  margin: 0 auto;
- padding-top: 3rem;
+ padding-top: 2rem;
  text-align: center;
  min-height: 75vh;
  display: flex;
  font-size: 5rem;
- padding-bottom: 3rem;
+ padding-bottom: 1rem;
  align-items: center;
  justify-content: center;
 }

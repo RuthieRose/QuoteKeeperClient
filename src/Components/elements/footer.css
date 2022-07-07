@@ -15,6 +15,9 @@
  color: rgb(247, 220, 248);
 }
 
+.heart {
+ font-size: .75rem;
+}
 
 @media screen and (max-width: 650px) {
  footer {

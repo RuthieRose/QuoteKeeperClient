@@ -1,0 +1,43 @@
+.add-quotes {
+ padding-top: 7rem;
+ text-align: center;
+}
+
+.save-quote-heading {
+ font-size: 2rem;
+ color: rgb(247, 220, 248);
+}
+
+.info-add {
+ color: rgb(247, 220, 248);
+ margin: 2rem;
+}
+
+.textarea {
+ width: 20rem;
+ height: 10rem;
+ padding: .5rem;
+ margin: 1rem;
+}
+
+.author-input {
+ width: 12rem;
+ margin: .5rem auto;
+}
+
+
+
+.save-button {
+ margin: 1rem;
+}
+
+.author-input, .textarea {
+ font-family: serif;
+ font-size: 1rem;
+}
+
+@media screen and (max-width: 350px) {
+ .textarea {
+  width: 12rem;
+ }
+}

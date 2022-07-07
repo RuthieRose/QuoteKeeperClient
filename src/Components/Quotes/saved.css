@@ -1,0 +1,56 @@
+.saved-quotes-container {
+ color: rgb(247, 220, 248);
+ padding-top: 7rem;
+align-items: center;
+justify-content: center;
+text-align: center;
+max-width: 50rem;
+margin-left: auto;
+margin-right: auto;
+}
+
+.saved-quotes {
+ font-size: 3rem;
+ text-align: center;
+ margin-bottom: 1rem;
+}
+
+.saved-action-buttons {
+ margin: 1rem;
+ font-size: 1.25rem;
+ cursor: pointer;
+}
+
+.saved-quote {
+ font-size: 1.5rem;
+ margin-bottom: 1rem;
+}
+
+.saved-author {
+ width: 10rem;
+ text-align: center;
+ margin-left: auto;
+ margin-right: auto;
+ padding-bottom: 2rem;
+ margin-bottom: 2rem;
+ border-bottom: 2px solid rgb(247, 220, 248);
+}
+
+.page-buttons {
+ font-size: 2rem;
+ text-align: center;
+ margin-bottom: 1rem;
+}
+
+.page-button {
+ margin-left: 4rem;
+ margin-right: 4rem;
+ cursor: pointer;
+}
+
+@media screen and (max-width: 350px) {
+ .page-button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+ }
+}

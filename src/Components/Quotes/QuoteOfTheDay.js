@@ -1,8 +1,8 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect} from 'react';
 import axiosAPI from 'axios';
 import { Link, useNavigate } from 'react-router-dom'
 import './quote.css';
-import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId, useContextCurrQuote, useContextUpdateCurrQuote, useContextCurrAuthor, useContextUpdateCurrAuthor, useContextCount, useContextUpdateCount } from '../Context'
+import { useContextAccessToken, useContextLoggedIn, useContextUpdateAccessToken, useContextUpdateLoggedIn, useContextUpdateLoggedOut, useContextUpdateUserId, useContextUserId, useContextCurrQuote, useContextUpdateCurrQuote, useContextCurrAuthor, useContextUpdateCurrAuthor, useContextCount, useContextUpdateCount, useContextUpdateSaved } from '../Context'
 
 export default function QuoteOfTheDay() {
 
@@ -20,6 +20,7 @@ export default function QuoteOfTheDay() {
   const updateAuthor = useContextUpdateCurrAuthor()
   const count = useContextCount()
   const updateCount = useContextUpdateCount()
+  const updateSaved = useContextUpdateSaved()
 
   let [quotebank, setQuotebank] = useState('')
 
@@ -55,6 +56,7 @@ export default function QuoteOfTheDay() {
 
       const response = await axios.post(`${ADD}/${userId}`,
         JSON.stringify({ quote, author }))
+        updateSaved();
       navigate('/saved')
     }
 

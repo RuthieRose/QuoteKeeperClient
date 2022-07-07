@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="citation">
       Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank" rel="noreferrer">ZenQuotes API</a>
       </div>
-      <div className="site-author">Made with 💖 by <a href="mailto:doodlepath@gmail.com">ruthie </a> © {date}</div>
+      <div className="site-author">Made with <span className="heart">💖</span> by <a href="mailto:doodlepath@gmail.com">ruthie </a> © {date}</div>
       </div>
     </footer>
   )

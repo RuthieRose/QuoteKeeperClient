@@ -2,8 +2,9 @@ import axiosAPI from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
 import { useContextAccessToken } from '../Context'
+import './am.css';
 
-function Account() {
+function Account({ setDisplay }) {
 
 
  const userInputRef = useRef();
@@ -31,6 +32,7 @@ function Account() {
 
  useEffect(() => {
   userInputRef.current.focus();
+  setDisplay(false)
  }, []);
 
  useEffect(() => {
@@ -55,7 +57,7 @@ function Account() {
   try {
    const response = await axios.post(DELETE,
     JSON.stringify({ email, password }))
-   console.log(response);
+   setDisplay(true)
    alert('Account has been deleted')
    setTimeout(() => {
     navigate('/')
@@ -75,49 +77,47 @@ function Account() {
 
  return (
   <>
-   <header className="App-header">
+   <header className="app-header">
     <h2>
      Account Management
     </h2>
     <h3>Delete Account</h3>
    </header>
-   <section>
+   <section className="warning">
     <h4>Warning! Account deletion is permanent. </h4>
     <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
     <p>To delete your account, enter your email address and password.</p>
     <form onSubmit={handleSubmit}>
 
      {/* Email */}
+     <div className="warning-email">
+      <label htmlFor="email">
+       Email:
+      </label>
 
-     <label htmlFor="email">
-      Email:
-     </label>
-
-     <input
-      type="text"
-      id="email"
-      ref={userInputRef}
-      onChange={e => setEmail(e.target.value)}
-      required
-      aria-invalid={validEmail ? 'false' : 'true'}
-      aria-describedby='emailnote'
-     />
+      <input
+       type="text"
+       id="email"
+       ref={userInputRef}
+       onChange={e => setEmail(e.target.value)}
+       required
+      />
+     </div>
      {/* Password */}
+     <div className="warning-password">
+      <label htmlFor="password">
+       Password:
 
-     <label htmlFor="password">
-      Password:
-
-     </label>
+      </label>
 
 
-     <input
-      type="password"
-      id="password"
-      onChange={e => setPassword(e.target.value)}
-      required
-
-     />
-
+      <input
+       type="password"
+       id="password"
+       onChange={e => setPassword(e.target.value)}
+       required
+      />
+     </div>
      <button disabled={!validEmail ? true : false}>Delete</button>
 
      <div>

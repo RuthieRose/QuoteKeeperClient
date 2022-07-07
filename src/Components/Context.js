@@ -19,6 +19,8 @@ const DisplayQuote = React.createContext()
 const UpdateDisplayQuote = React.createContext()
 const DisplayAuthor = React.createContext()
 const UpdateDisplayAuthor = React.createContext()
+const SavedContext = React.createContext()
+const UpdateSavedContext = React.createContext()
 
 export function useContextLoggedIn() {
    return useContext(LoggedInContext)
@@ -96,6 +98,14 @@ export function useContextUpdateDisplayAuthor() {
    return useContext(UpdateDisplayAuthor)
 }
 
+export function useContextSaved() {
+   return useContext(SavedContext)
+}
+
+export function useContextUpdateSaved() {
+   return useContext(UpdateSavedContext)
+}
+
 
 
 export function ContextProvider({ children }) {
@@ -109,6 +119,7 @@ export function ContextProvider({ children }) {
    const [count, setCount] = useState(0)
    const [displayQuote, setDisplayQuote] = useState(null)
    const [displayAuthor, setDisplayAuthor] = useState(null)
+   const [saved, setSaved] = useState(0)
 
 
    function updateLoggedIn() {
@@ -151,6 +162,10 @@ export function ContextProvider({ children }) {
       setDisplayAuthor(author)
    }
 
+   function updateSaved() {
+      setSaved(saved => saved + 1)
+   }
+
 
    return (
       <LoggedInContext.Provider value={loggedIn}>
@@ -172,7 +187,12 @@ export function ContextProvider({ children }) {
                                                       <DisplayQuote.Provider value={displayQuote}>
                                                          <DisplayAuthor.Provider value={displayAuthor}>
                                                             <UpdateDisplayAuthor.Provider value={updateDisplayAuthor}>
+                                                            <SavedContext.Provider value={saved}>
+                                                               <UpdateSavedContext.Provider value={updateSaved}>
                                                                {children}
+                                                               </UpdateSavedContext.Provider>
+                                                            </SavedContext.Provider>
+                                                       
                                                             </UpdateDisplayAuthor.Provider>
                                                          </DisplayAuthor.Provider>
                                                       </DisplayQuote.Provider>
