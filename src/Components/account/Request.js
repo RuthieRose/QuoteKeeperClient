@@ -93,14 +93,6 @@ export default function Request({ setDisplayReset, setDisplay }) {
           <label htmlFor="email">
             Email:
 
-            <span className={validEmail && emailFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validEmail || !email ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-
           </label>
           <input
             type="text"

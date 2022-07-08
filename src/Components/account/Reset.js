@@ -2,7 +2,7 @@ import './reset.css';
 import axiosAPI from 'axios';
 import { Link, useNavigate } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
-import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const axios = axiosAPI.create({
@@ -105,7 +105,8 @@ export default function Reset({ setDisplayReset, setDisplay }) {
     <>
       <section className="reset-request">
         <p ref={errorRef} className={errorMessage ? "error-message" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-        <h2>Reset Password</h2>
+        <h2 className="reset-heading">Reset Password</h2>
+        <h4>If the password reset fails, you will have to request a new temporary password.</h4>
         <form onSubmit={handleSubmit}>
 
            {/* Email */}
@@ -128,14 +129,6 @@ export default function Reset({ setDisplayReset, setDisplay }) {
 <div className="temp-reset">
           <label htmlFor="temp">
             Temporary Password:
-
-            <span className={validTemp && tempFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validTemp || !temp ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
 
           </label>
      
@@ -164,14 +157,6 @@ export default function Reset({ setDisplayReset, setDisplay }) {
           <label htmlFor="password">
             Password:
 
-            <span className={validPassword && passwordFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validPassword || !password ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-
           </label>
 
 
@@ -198,14 +183,6 @@ export default function Reset({ setDisplayReset, setDisplay }) {
 <div className="password-match">
           <label htmlFor="matchPassword">
             Confirm Password:
-
-            <span className={validMatch && matchPassword && matchFocus ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-
-            <span className={validMatch || !matchPassword ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
 
           </label>
 
