@@ -6,6 +6,8 @@ The backend repo is https://github.com/lilyruth/newQuoteKeeperServer.
 
 The deployed project is at https://quotekeeper.io. 
 
+The YouTube demo is: https://youtu.be/qjG5cuszlDo.
+
 Users can:
 - View quotes without registering
 - Register (will receive a confirmation email) 
